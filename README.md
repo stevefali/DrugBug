@@ -10,7 +10,7 @@ DrugBug is a great way for people to track their medications and quickly referen
 
 As a father of a transplant patient, I know how much work it can be to keep track when someone is on multiple medications.
 I can't tell you how many times my child has wanted to try some new juice or fruit and I had to look up on Google whether it interacts with any of her medications, only to still feel uneasy about whether I should trust the sources.
-Sometimes, life happens and I end up so busy or distracted that I end up late for a medicine dose time.
+Sometimes, life happens and I find myself so busy or distracted that I end up late for a medicine dose time.
 There can be so many things to stay on top of including:
 
 - When to take each medicine
@@ -279,6 +279,7 @@ The app will need to use auth for signup and login so the user's medication info
   - React project with routes and boilerplate pages
 - Create migrations
 - Create database
+- Create knex functions
 - Implement auth for client and server
 - - Implement database queries and routes
 - Create and style front-end components and pages
@@ -287,8 +288,10 @@ The app will need to use auth for signup and login so the user's medication info
   - Setup notifications
     - refills
     - dose reminders
+  - Setup WebPush permission on front end
 - Implement OpenFDA api calls
 - Implement drug/food interaction search on front end
+  	- Search within response string for key terms
 - Bug fixes
 - Demo Day
 
