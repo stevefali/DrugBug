@@ -248,6 +248,7 @@ The app will need to use auth for signup and login so the user's medication info
   - React project with routes and boilerplate pages
 - Create migrations
 - Create database
+- Create knex functions
 - Implement auth for client and server
 - - Implement database queries and routes
 - Create and style front-end components and pages
@@ -256,6 +257,7 @@ The app will need to use auth for signup and login so the user's medication info
   - Setup notifications
     - refills
     - dose reminders
+- Setup WebPush permission on front end
 - Bug fixes
 - Demo Day
 
