@@ -294,8 +294,7 @@ The app will need to use auth for signup and login so the user's medication info
 - As a logged in user, I want to have quick access to information about my preferred pharmacy such as contact information and hours of operation
 - As a logged in user, I want to have quick access to my doctor's contact information
 
-- Info lookup page
-- 
+
 
 ### Doctor/Pharmacy Info
 
@@ -305,5 +304,5 @@ The app will need to use auth for signup and login so the user's medication info
 
 ![](readme-images/add-edit-pharmacy.jpg)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI0NTczNTA2NCwtMjEwNzgzMzkxOV19
+eyJoaXN0b3J5IjpbMTE5MjA2NDQ2MSwtMjEwNzgzMzkxOV19
 -->
