@@ -10,7 +10,7 @@ DrugBug is a great way for people to track their medications and quickly referen
 
 As a father of a transplant patient, I know how much work it can be to keep track when someone is on multiple medications.
 I can't tell you how many times my child has wanted to try some new juice or fruit and I had to look up on Google whether it interacts with any of her medications, only to still feel uneasy about whether I should trust the sources.
-Sometimes, life happens and I find myself so busy or distracted that I end up late for a medicine dose time.
+Sometimes, life happens and I end up so busy or distracted that I end up late for a medicine dose time.
 There can be so many things to stay on top of including:
 
 - When to take each medicine
@@ -67,7 +67,8 @@ This app will be great for people who take multiple medications regularly and co
 - Login
 - Register
 - Reminders
-
+- Create/edit reminders
+- Info lookup
 
 ### Mockups
 
@@ -90,6 +91,10 @@ This app will be great for people who take multiple medications regularly and co
 ### Reminders
 
 ![](readme-images/reminders.jpg)
+
+### Create/edit Reminders
+
+![](readme-images/create-edit-reminder.jpg)
 
 ### Info Lookup
 
@@ -294,8 +299,6 @@ The app will need to use auth for signup and login so the user's medication info
 - As a logged in user, I want to have quick access to information about my preferred pharmacy such as contact information and hours of operation
 - As a logged in user, I want to have quick access to my doctor's contact information
 
-
-
 ### Doctor/Pharmacy Info
 
 ![](readme-images/doctor-pharmacy-info.jpg)
@@ -304,5 +307,5 @@ The app will need to use auth for signup and login so the user's medication info
 
 ![](readme-images/add-edit-pharmacy.jpg)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTE5MjA2NDQ2MSwtMjEwNzgzMzkxOV19
+eyJoaXN0b3J5IjpbNDcxMTE5Mjc0LC0yMTA3ODMzOTE5XX0=
 -->
