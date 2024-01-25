@@ -10,7 +10,7 @@ DrugBug is a great way for people to track their medications and quickly referen
 
 As a father of a transplant patient, I know how much work it can be to keep track when someone is on multiple medications.
 I can't tell you how many times my child has wanted to try some new juice or fruit and I had to look up on Google whether it interacts with any of her medications, only to still feel uneasy about whether I should trust the sources.
-Sometimes, life happens and I end up so busy or distracted that I end up late for a medicine dose time.
+Sometimes, life happens and I find myself so busy or distracted that I end up late for a medicine dose time.
 There can be so many things to stay on top of including:
 
 - When to take each medicine
@@ -33,7 +33,6 @@ This app will be great for people who take multiple medications regularly and co
 
 - As a logged in user, I want to be able to receive notifications as reminders for medication times
 - As a logged in user, I want to be able to receive notifications as reminders for when to order medication refills
-- As a logged in user, I want to be able to quickly check for information such as drug/food interactions and side effects for all the medications I am taking in a single search
 - As a logged in user, I want to be able to see a page with all of the medications I am using and any upcoming reminders for them.
 
 ## Implementation
@@ -48,8 +47,9 @@ This app will be great for people who take multiple medications regularly and co
   - react
   - react-router
   - axios
-  - possibly Bootstrap
+  -  Bootstrap
 - Server Libraries:
+  - Bree
   - knex
   - express
   - possibly Firebase
@@ -57,8 +57,8 @@ This app will be great for people who take multiple medications regularly and co
 
 ### APIs
 
-- [OpenFDA Drug Labelling API](https://open.fda.gov/apis/drug/label)
-  - For getting information on medications such as interactions and warnings
+- I do not need API's for data unless I make the info lookup functionality in my Nice-to-Haves.
+	- The API for that is [OpenFDA Drug Labelling API](https://open.fda.gov/apis/drug/label)
 
 ### Sitemap
 
@@ -66,9 +66,6 @@ This app will be great for people who take multiple medications regularly and co
 - Add/edit medications
 - Login
 - Register
-- Reminders
-- Create/edit reminders
-- Info lookup
 
 ### Mockups
 
@@ -88,17 +85,9 @@ This app will be great for people who take multiple medications regularly and co
 
 ![](readme-images/register.jpg)
 
-### Reminders
 
-![](readme-images/reminders.jpg)
 
-### Create/edit Reminders
 
-![](readme-images/create-edit-reminder.jpg)
-
-### Info Lookup
-
-![](readme-images/info-lookup.jpg)
 
 ### Header (visible on all pages)
 
@@ -245,27 +234,7 @@ This app will be great for people who take multiple medications regularly and co
 ]
 ```
 
-**GET https://api.fda.gov/drug/label.json?search=boxed_warning:(medication name)**
 
-- Get drug and food interactions for a medication
-
-**Parameters:**
-
-- medication name
-
-**Response:**
-
-```
-...
-"results": [
-				{
-					"effective_time":  "20211007",
-					"drug_interactions": [
-										    "7 DRUG INTERACTIONS Mycophenolic Acid Products..."
-										 ]
-				},
-				...
-```
 
 ### Auth
 
@@ -287,17 +256,45 @@ The app will need to use auth for signup and login so the user's medication info
   - Setup notifications
     - refills
     - dose reminders
-- Implement OpenFDA api calls
-- Implement drug/food interaction search on front end
 - Bug fixes
 - Demo Day
 
 ## Nice-to-haves
 
+- As a logged in user, I want to be able to quickly check for information such as drug/food interactions and side effects for all the medications I am taking in a single search
 - More complex dosage and reminders use cases
 - More information searchable for medications
 - As a logged in user, I want to have quick access to information about my preferred pharmacy such as contact information and hours of operation
 - As a logged in user, I want to have quick access to my doctor's contact information
+
+**GET https://api.fda.gov/drug/label.json?search=boxed_warning:(medication name)**
+
+- Get drug and food interactions for a medication
+
+**Parameters:**
+
+- medication name
+
+**Response:**
+
+```
+...
+"results": [
+				{
+					"effective_time":  "20211007",
+					"drug_interactions": [
+										    "7 DRUG INTERACTIONS Mycophenolic Acid Products..."
+										 ]
+				},
+				...
+```
+### Info Lookup
+
+![](readme-images/info-lookup.jpg)
+
+### Create/edit Reminders
+
+![](readme-images/create-edit-reminder.jpg)
 
 ### Doctor/Pharmacy Info
 
