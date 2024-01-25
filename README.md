@@ -306,3 +306,6 @@ The app will need to use auth for signup and login so the user's medication info
 ### Add/Edit Doctor/Pharmacy
 
 ![](readme-images/add-edit-pharmacy.jpg)
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbNDcxMTE5Mjc0XX0=
+-->
