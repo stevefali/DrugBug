@@ -95,7 +95,7 @@ This app will be great for people who take multiple medications regularly and co
 
 ### Data
 
-![](readme-images/sql-diag.png)
+![](readme-images/database-image.png)
 
 ### Endpoints
 
