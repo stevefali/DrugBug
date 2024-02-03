@@ -1,0 +1,35 @@
+.card {
+  &--medicine {
+    font-size: 1.25;
+    width: 22rem;
+  }
+
+  &__title {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.dose-label {
+  max-width: 6rem;
+  margin: 0;
+  font-weight: 600;
+}
+
+.supply__label {
+  //   border-width: 4px;
+  border-top: 4px solid red;
+  //   font-weight: 600;
+}
+
+.amount-remaining {
+  display: flex;
+  flex-direction: row;
+}
+.button-space {
+  width: 80px;
+}
+
+.next-label {
+  font-weight: 600;
+}
