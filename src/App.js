@@ -1,6 +1,6 @@
-import logo from './logo.svg';
-import './App.css';
-
+import logo from "./logo.svg";
+import "./App.scss";
+import "bootswatch/dist/minty/bootstrap.min.css";
 function App() {
   return (
     <div className="App">
