@@ -27,16 +27,17 @@ function Header() {
             />{" "}
             DrugBug
           </Navbar.Brand>
+
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav variant="underline">
               <Nav.Item>
                 <LinkContainer to={"/"}>
-                  <Nav.Link href="/">Home</Nav.Link>
+                  <Nav.Link>Home</Nav.Link>
                 </LinkContainer>
               </Nav.Item>
               <Nav.Item>
-                <LinkContainer to={"/medication/"}>
+                <LinkContainer to={"/medication"}>
                   <Nav.Link>Medication</Nav.Link>
                 </LinkContainer>
               </Nav.Item>
