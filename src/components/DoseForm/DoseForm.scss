@@ -1,0 +1,21 @@
+.frequency-container {
+  display: flex;
+  align-items: center;
+}
+
+.dose-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  //   background-color: green;
+  &__field {
+    &--units {
+      width: 4rem;
+    }
+  }
+  &__submit {
+    height: fit-content;
+  }
+}
