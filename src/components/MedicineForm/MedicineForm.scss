@@ -1,0 +1,20 @@
+.medication-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  &__field {
+    &--units {
+      width: 4rem;
+    }
+  }
+  &__submit {
+    height: fit-content;
+  }
+}
+
+.amount-container {
+  display: flex;
+}
