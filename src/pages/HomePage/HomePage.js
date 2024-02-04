@@ -5,6 +5,8 @@ import "./HomePage.scss";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { getUserMedicationsEndpoint } from "../../utils/networkUtils";
+import { Stack } from "react-bootstrap";
+import MedicineCard from "../../components/MedicineCard/MedicineCard";
 
 const HomePage = () => {
   const [user, setUser] = useState(null);
@@ -30,6 +32,12 @@ const HomePage = () => {
   return (
     <Container>
       <h1>My Medications</h1>
+
+      <Stack className="medications-list" gap={3}>
+        {userMedications.map((medication) => {
+          return <MedicineCard medication={medication} key={medication.id} />;
+        })}
+      </Stack>
     </Container>
   );
 };

@@ -1,0 +1,67 @@
+.medicine-card {
+  font-size: 1.25;
+  max-width: 23rem;
+  min-width: 18rem;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__body {
+    padding: 0;
+  }
+  &__list-group {
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+  }
+  &__item {
+    background-color: #56cc9d0b;
+    border-color: #ced4da;
+  }
+  &__dose {
+    color: #49ad85;
+    margin-bottom: 0.25rem;
+  }
+  &__title {
+    margin: 0;
+    max-width: 10rem;
+  }
+}
+
+.dose {
+  &-label {
+    max-width: 6rem;
+    margin: 0;
+    font-weight: 600;
+  }
+  &-description {
+    text-transform: capitalize;
+    margin: 0;
+    font-weight: 600;
+  }
+}
+
+.reminder {
+  font-weight: 700;
+  &--1 {
+    color: #49ad85;
+    // color: #f3969a;
+    // color: #ff7851;
+  }
+  &--0 {
+    color: #ff7851;
+  }
+}
+
+.amount-remaining {
+  display: flex;
+  flex-direction: row;
+}
+.button-space {
+  width: 80px;
+}
+
+.next-label {
+  font-weight: 600;
+}
