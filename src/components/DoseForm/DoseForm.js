@@ -1,8 +1,12 @@
 import "./DoseForm.scss";
-import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import DrugBugButton from "../DrugBugButton/DrugBugButton";
 
 const DoseForm = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <Form className="dose-form">
       <div className="frequency-container">
@@ -29,7 +33,7 @@ const DoseForm = () => {
           <Form.Control
             type="type"
             placeholder="mg"
-            className="medication-form__field--units"
+            className="dose-form__field--units"
           />
         </Form.Group>
       </div>
@@ -37,13 +41,7 @@ const DoseForm = () => {
       <Form.Group className="mb-3" controlId="formBasicCheckbox">
         <Form.Check type="checkbox" label="Dose Reminder" />
       </Form.Group>
-      <Button
-        variant="primary"
-        type="submit"
-        className="medication-form__submit"
-      >
-        Submit
-      </Button>
+      <DrugBugButton text={"Submit"} handleClick={handleSubmit} />
     </Form>
   );
 };
