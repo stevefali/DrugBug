@@ -1,7 +1,7 @@
 const BASE = `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_PORT}`;
 
 export const getUserMedicationsEndpoint = (userId) =>
-  `${BASE}/user/medications/${userId}`;
+  `${BASE}/medication/medications/${userId}`;
 
 export const putModifyMedicationEndpoint = (medicationId) =>
   `${BASE}/medication/${medicationId}`;
