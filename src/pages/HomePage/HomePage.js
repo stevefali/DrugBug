@@ -33,7 +33,7 @@ const HomePage = () => {
     <Container>
       <h1>My Medications</h1>
 
-      <Stack gap={3}>
+      <Stack className="medications-list" gap={3}>
         {userMedications.map((medication) => {
           return <MedicineCard medication={medication} key={medication.id} />;
         })}
