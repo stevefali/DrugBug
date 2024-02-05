@@ -5,9 +5,11 @@ import "./AddEditPage.scss";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import {
+  deleteDoseEndpoint,
   getCurrentUserEndpoint,
   postAddMedicationEndpoint,
   putModifyMedicationEndpoint,
+  deleteMedicationEndpoint,
 } from "../../utils/networkUtils";
 import DrugBugButton from "../../components/DrugBugButton/DrugBugButton";
 import Form from "react-bootstrap/Form";
@@ -55,17 +57,12 @@ const AddEditPage = ({ isAdd }) => {
         let selectedMedication = {};
         for (const medication of medResponse.data.medications) {
           if (medication.id == medId) {
-            console.log("found");
             selectedMedication = medication;
           }
         }
 
         setUserMedication(selectedMedication);
-        console.log("selected ", selectedMedication);
-        console.log("userMedications", userMedication);
       }
-      // console.log(response.data);
-      console.log(user);
     } catch (error) {
       console.log(error);
     }
@@ -120,27 +117,28 @@ const AddEditPage = ({ isAdd }) => {
     }
   };
 
-  const editMedication = async ({
-    medicine_name,
-    amount_remaining,
-    user_id,
-    refill_reminder,
-    refill_reminder_date,
-    refilled_on,
-    amount_unit,
-  }) => {
+  const editMedication = async (
+    medicineName,
+    amountRemaining,
+    userId,
+    refillReminder,
+    refillReminderDate,
+    refilledOn,
+    amountUnit
+  ) => {
     try {
-      console.log(medicine_name);
+      token = sessionStorage.getItem("token");
       const editMedResponse = await axios.put(
         putModifyMedicationEndpoint(medId),
         {
-          medicine_name: medicine_name,
-          amount_remaining: amount_remaining,
-          // user_id: user_id,
-          refill_reminder: refill_reminder,
-          refill_reminder_date: refill_reminder_date,
-          refilled_on: refilled_on,
-          amount_unit: amount_unit,
+          medicine_name: medicineName,
+          amount_remaining: amountRemaining,
+          user_id: userId,
+          refill_reminder: refillReminder,
+          refill_reminder_date: refillReminderDate,
+          refilled_on: refilledOn,
+          amount_unit: amountUnit,
+          // timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         },
         {
           headers: {
@@ -151,6 +149,21 @@ const AddEditPage = ({ isAdd }) => {
       navigate("/");
     } catch (error) {
       setError("Error updating medication.");
+      console.log(error);
+    }
+  };
+
+  const deleteMedication = async () => {
+    token = sessionStorage.getItem("token");
+    try {
+      const response = await axios.delete(deleteMedicationEndpoint(medId), {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      navigate("/");
+    } catch (error) {
+      setError("Error deleting medication.");
       console.log(error);
     }
   };
@@ -172,6 +185,7 @@ const AddEditPage = ({ isAdd }) => {
           refilled_on={new Date(Date.now()).toISOString().substring(0, 10)}
           amount_unit={""}
           submitResult={addMedication}
+          isAdd={isAdd}
         />
       </Container>
     );
@@ -200,6 +214,8 @@ const AddEditPage = ({ isAdd }) => {
           refilled_on={new Date(refilled_on).toISOString().substring(0, 10)}
           amount_unit={amount_unit}
           submitResult={editMedication}
+          doDelete={deleteMedication}
+          isAdd={isAdd}
         />
         {error && <p>Error updating medication</p>}
       </Container>
