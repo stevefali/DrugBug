@@ -8,26 +8,26 @@ import { getUserMedicationsEndpoint } from "../../utils/networkUtils";
 import { Stack } from "react-bootstrap";
 import MedicineCard from "../../components/MedicineCard/MedicineCard";
 
-const HomePage = () => {
-  const [user, setUser] = useState(null);
-  const [userMedications, setUserMedications] = useState([]);
+const HomePage = ({ userMedications }) => {
+  // const [user, setUser] = useState(null);
+  // const [userMedications, setUserMedications] = useState([]);
 
-  // Temporarily set the userId to 3
-  const userId = 3;
+  // // Temporarily set the userId to 3
+  // const userId = 3;
 
-  const fetchUserMedications = async () => {
-    try {
-      const response = await axios.get(getUserMedicationsEndpoint(userId));
-      //   console.log(response.data);
-      setUserMedications(response.data.medications);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const fetchUserMedications = async () => {
+  //   try {
+  //     const response = await axios.get(getUserMedicationsEndpoint(userId));
+  //     //   console.log(response.data);
+  //     setUserMedications(response.data.medications);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchUserMedications();
-  }, []);
+  // useEffect(() => {
+  //   fetchUserMedications();
+  // }, []);
 
   return (
     <Container>

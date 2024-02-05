@@ -14,3 +14,7 @@ export const deleteDoseEndpoint = (doseId) => `${BASE}/dose/${doseId}`;
 
 export const deleteMedicationEndpoint = (medicationId) =>
   `${BASE}/medication/${medicationId}`;
+
+export const postRegisterEndpoint = () => `${BASE}/user/register`;
+
+export const postLoginEndpoint = () => `${BASE}/user/login`;
