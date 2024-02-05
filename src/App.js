@@ -75,6 +75,7 @@ function App() {
           }
         />
         <Route path="/medication" element={<AddEditPage />} />
+        <Route path="/medication/:medId" element={<AddEditPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage user={user} />} />
         <Route path="*" element={<NotFoundPage />} />

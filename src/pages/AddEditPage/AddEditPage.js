@@ -7,33 +7,45 @@ import axios from "axios";
 import { getCurrentUserEndpoint } from "../../utils/networkUtils";
 import DrugBugButton from "../../components/DrugBugButton/DrugBugButton";
 import Form from "react-bootstrap/Form";
+import { getUserMedicationsEndpoint } from "../../utils/networkUtils";
+import { useParams } from "react-router-dom";
 
-const AddEditPage = () => {
+const AddEditPage = ({ isAdd }) => {
   const [user, setUser] = useState(null);
-  const [doseForms, setDoseForms] = useState([<DoseForm />]);
-  // const [userMedications, setUserMedications] = useState([]);
+  const [doseForms, setDoseForms] = useState([1]);
+  const [userMedication, setUserMedication] = useState({});
   const [failedAuth, setFailedAuth] = useState(false);
   let token = null;
 
+  const { medId } = useParams();
+
   const fetchAuthorizedUser = async (token) => {
     try {
-      const response = await axios.get(getCurrentUserEndpoint(), {
+      const userResponse = await axios.get(getCurrentUserEndpoint(), {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      setUser(response.data);
+      setUser(userResponse.data);
 
-      //   const medResponse = await axios.get(
-      //     getUserMedicationsEndpoint(response.data.id),
-      //     {
-      //       headers: {
-      //         Authorization: `Bearer ${token}`,
-      //       },
-      //     }
-      //   );
-
-      //   setUserMedications(medResponse.data.medications);
+      if (!isAdd) {
+        const medResponse = await axios.get(
+          getUserMedicationsEndpoint(userResponse.data.id),
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const selectedMedication = medResponse.data.medications.filter(
+          (medication) => {
+            return medId === medication.id;
+          }
+        );
+        setUserMedication(selectedMedication);
+      }
+      // console.log(response.data);
+      console.log(user);
     } catch (error) {
       console.log(error);
     }
@@ -48,15 +60,56 @@ const AddEditPage = () => {
     fetchAuthorizedUser(token);
   }, []);
 
-  const handleAddMedication = () => {};
+  const addMedication = async () => {};
 
-  return (
-    <Container>
-      <h1>Add New Medication</h1>
-      <MedicineForm doseForms={doseForms} setDoseForms={setDoseForms} />
-      {/* <DoseForm /> */}
-    </Container>
-  );
+  const editMedication = async () => {};
+
+  if (user === null) {
+    return <p>Loading</p>;
+  }
+
+  if (isAdd) {
+    return (
+      <Container>
+        <h1>Add New Medication</h1>
+        <MedicineForm
+          medicine_name={""}
+          amount_remaining={""}
+          user_id={user.id}
+          refill_reminder="false"
+          refill_reminder_date={" "}
+          refilled_on={new Date(Date.now()).toISOString().substring(0, 10)}
+          amount_unit={""}
+          submitResult={addMedication}
+        />
+      </Container>
+    );
+  } else {
+    const {
+      medicine_name,
+      amount_remaining,
+      user_id,
+      refill_reminder,
+      refill_reminder_date,
+      refilled_on,
+      amount_unit,
+    } = userMedication;
+    return (
+      <Container>
+        <h1>Edit Medication</h1>
+        <MedicineForm
+          medicine_name={medicine_name}
+          amount_remaining={amount_remaining}
+          user_id={user_id}
+          refill_reminder={refill_reminder}
+          refill_reminder_date={refill_reminder_date}
+          refilled_on={refilled_on}
+          amount_unit={amount_unit}
+          submitResult={editMedication}
+        />
+      </Container>
+    );
+  }
 };
 
 export default AddEditPage;
