@@ -16,6 +16,8 @@ function MedicineForm({
   refilled_on,
   amount_unit,
   submitResult,
+  doDelete,
+  isAdd,
 }) {
   // const handleSubmit = (event) => {
   //   event.preventDefault();
@@ -39,6 +41,10 @@ function MedicineForm({
 
   const handleRefillReminder = () => {
     setIsRefillReminder(!isRefillReminder);
+  };
+  const handleDelete = (event) => {
+    event.preventDefault();
+    doDelete();
   };
 
   const handleSubmit = (event) => {
@@ -69,8 +75,8 @@ function MedicineForm({
       formRef.current.amount_remaining.value,
       user_id,
       isRefillReminder ? 1 : 0,
-      new Date(formRef.current.reminder_date.value).getMilliseconds(),
-      new Date(formRef.current.refilled_on.value).getMilliseconds(),
+      new Date(formRef.current.reminder_date.value).getTime(),
+      new Date(formRef.current.refilled_on.value).getTime(),
       formRef.current.amount_unit.value
     );
   };
@@ -166,6 +172,15 @@ function MedicineForm({
       <div className="medication-form__submit">
         <DrugBugButton text={"Submit"} handleClick={handleSubmit} />
       </div>
+      {isAdd || (
+        <div className="medication-form__submit">
+          <DrugBugButton
+            text={"Delete "}
+            handleClick={handleDelete}
+            className="delete"
+          />
+        </div>
+      )}
     </Form>
   );
 }

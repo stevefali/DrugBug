@@ -7,6 +7,7 @@
   &__submit {
     margin-top: 1rem;
   }
+
   &__field {
     border-color: #ced4da;
     &--units {
@@ -43,4 +44,8 @@
       font-size: 2rem;
     }
   }
+}
+
+.delete {
+  background-color: red;
 }
