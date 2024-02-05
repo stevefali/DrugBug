@@ -15,8 +15,6 @@ const SignupPage = () => {
 
   const navigate = useNavigate();
 
-  //   console.log(postRegisterEndpoint());
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
