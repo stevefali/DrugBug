@@ -10,6 +10,7 @@ import SignupPage from "./pages/SignupPage/SignupPage";
 import { getUserMedicationsEndpoint } from "./utils/networkUtils";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import LoginPage from "./pages/LoginPage/LoginPage";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -41,6 +42,7 @@ function App() {
         />
         <Route path="/medication" element={<AddEditPage />} />
         <Route path="/signup" element={<SignupPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
