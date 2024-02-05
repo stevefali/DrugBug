@@ -8,7 +8,7 @@ const DoseForm = () => {
   };
 
   return (
-    <Form className="dose-form">
+    <div className="dose-form">
       <div className="frequency-container">
         <Form.Group className="mb-3">
           <Form.Label>Frequency</Form.Label>
@@ -42,7 +42,7 @@ const DoseForm = () => {
         <Form.Check type="checkbox" label="Dose Reminder" />
       </Form.Group>
       <DrugBugButton text={"Submit"} handleClick={handleSubmit} />
-    </Form>
+    </div>
   );
 };
 

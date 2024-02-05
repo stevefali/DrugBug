@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import "./MedicineForm.scss";
 import DrugBugButton from "../DrugBugButton/DrugBugButton";
 
-function MedicineForm() {
+function MedicineForm(doseForms, setDoseForms) {
   const handleSubmit = (event) => {
     event.preventDefault();
   };
@@ -41,6 +41,11 @@ function MedicineForm() {
       <Form.Group className="mb-3" controlId="formBasicCheckbox">
         <Form.Check type="checkbox" label="Refill Reminder" />
       </Form.Group>
+
+      {/* {doseForms.map((doseForm) => {
+        return doseForm;
+      })} */}
+
       <DrugBugButton text={"Submit"} handleClick={handleSubmit} />
     </Form>
   );
