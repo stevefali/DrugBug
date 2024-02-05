@@ -7,7 +7,10 @@ import AddEditPage from "./pages/AddEditPage/AddEditPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import Header from "./components/Header/Header";
 import SignupPage from "./pages/SignupPage/SignupPage";
-import { getUserMedicationsEndpoint } from "./utils/networkUtils";
+import {
+  getCurrentUserEndpoint,
+  getUserMedicationsEndpoint,
+} from "./utils/networkUtils";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -18,31 +21,64 @@ function App() {
   const [failedAuth, setFailedAuth] = useState(false);
 
   const useriid = 4;
-  const fetchUserMedications = async () => {
+  const fetchAuthorizedUser = async (token) => {
     try {
-      const response = await axios.get(getUserMedicationsEndpoint(useriid));
-      //   console.log(response.data);
-      setUserMedications(response.data.medications);
+      const response = await axios.get(getCurrentUserEndpoint(), {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setUser(response.data);
+      console.log(response.data);
+
+      const medResponse = await axios.get(
+        getUserMedicationsEndpoint(response.data.id),
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      setUserMedications(medResponse.data.medications);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    fetchUserMedications();
+    const token = sessionStorage.getItem("token");
+    if (!token) {
+      setFailedAuth(true);
+    }
+
+    fetchAuthorizedUser(token);
   }, []);
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("token");
+    setUser(null);
+    setFailedAuth(true);
+  };
 
   return (
     <BrowserRouter>
-      <Header />
+      <Header user={user} handleLogout={handleLogout} />
       <Routes>
         <Route
           path="/"
-          element={<HomePage userMedications={userMedications} />}
+          element={
+            <HomePage
+            // userMedications={userMedications}
+            // failedAuth={failedAuth}
+            // setFailedAuth={setFailedAuth}
+            // fetchAuthorizedUser={fetchAuthorizedUser}
+            />
+          }
         />
         <Route path="/medication" element={<AddEditPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage user={user} />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

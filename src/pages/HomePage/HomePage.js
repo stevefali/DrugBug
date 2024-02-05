@@ -7,26 +7,76 @@ import { useEffect, useState } from "react";
 import { getUserMedicationsEndpoint } from "../../utils/networkUtils";
 import { Stack } from "react-bootstrap";
 import MedicineCard from "../../components/MedicineCard/MedicineCard";
+import { useNavigate, Link } from "react-router-dom";
+import { getCurrentUserEndpoint } from "../../utils/networkUtils";
 
-const HomePage = ({ userMedications }) => {
-  // const [user, setUser] = useState(null);
-  // const [userMedications, setUserMedications] = useState([]);
+const HomePage = (
+  {
+    // userMedications,
+    // failedAuth,
+    // setFailedAuth,
+    // fetchAuthorizedUser,
+  }
+) => {
+  const navigate = useNavigate();
 
-  // // Temporarily set the userId to 3
-  // const userId = 3;
+  const [user, setUser] = useState(null);
+  const [userMedications, setUserMedications] = useState([]);
+  const [failedAuth, setFailedAuth] = useState(false);
 
-  // const fetchUserMedications = async () => {
-  //   try {
-  //     const response = await axios.get(getUserMedicationsEndpoint(userId));
-  //     //   console.log(response.data);
-  //     setUserMedications(response.data.medications);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const useriid = 4;
+  const fetchAuthorizedUser = async (token) => {
+    try {
+      const response = await axios.get(getCurrentUserEndpoint(), {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setUser(response.data);
+      console.log(response.data);
 
-  // useEffect(() => {
-  //   fetchUserMedications();
+      const medResponse = await axios.get(
+        getUserMedicationsEndpoint(response.data.id),
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      setUserMedications(medResponse.data.medications);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    const token = sessionStorage.getItem("token");
+    if (!token) {
+      setFailedAuth(true);
+    }
+
+    fetchAuthorizedUser(token);
+  }, []);
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("token");
+    setUser(null);
+    setFailedAuth(true);
+  };
+
+  if (failedAuth) {
+    // navigate("/login");
+    return (
+      <Container>
+        <h1>Welcome to DrugBug</h1>
+        <p>Please Login to get started.</p>
+        <p>
+          <Link to="/login">Log in</Link>
+        </p>
+      </Container>
+    );
+  }
   // }, []);
 
   return (
