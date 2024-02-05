@@ -11,11 +11,14 @@
   justify-content: space-between;
   //   background-color: green;
   &__field {
+    border-color: #ced4da;
     &--units {
       width: 4rem;
+      border-color: #ced4da;
+    }
+    &__check {
+      // border-color: red;
+      // color: green;
     }
   }
-  // &__submit-button {
-  //   height: fit-content;
-  // }
 }

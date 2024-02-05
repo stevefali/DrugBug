@@ -33,6 +33,7 @@ const HomePage = (
       });
       setUser(response.data);
       // console.log(response.data);
+      console.log(user);
 
       const medResponse = await axios.get(
         getUserMedicationsEndpoint(response.data.id),
@@ -43,6 +44,7 @@ const HomePage = (
         }
       );
 
+      console.log(medResponse.data);
       setUserMedications(medResponse.data.medications);
     } catch (error) {
       console.log(error);

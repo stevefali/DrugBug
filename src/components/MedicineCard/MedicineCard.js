@@ -13,7 +13,7 @@ const MedicineCard = ({ medication }) => {
 
   const handleButton = (event) => {
     event.preventDefault();
-    navigate("/medication");
+    navigate(`/medication/${medication.id}`);
   };
   //
 

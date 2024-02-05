@@ -4,10 +4,14 @@
   // align-items: center;
   // flex-wrap: wrap;
   // justify-content: space-between;
-
+  &__submit {
+    margin-top: 1rem;
+  }
   &__field {
+    border-color: #ced4da;
     &--units {
-      width: 4rem;
+      width: 6rem;
+      border-color: #ced4da;
     }
   }
   //   &__submit {
@@ -17,4 +21,26 @@
 
 .amount-container {
   display: flex;
+}
+
+.doseform-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.plus-minus {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__button {
+    font-size: 1.5rem;
+    margin: 0;
+    &--plus {
+      color: #49ad85;
+    }
+    &--minus {
+      color: #ff7851;
+      font-size: 2rem;
+    }
+  }
 }
