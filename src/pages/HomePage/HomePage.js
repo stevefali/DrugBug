@@ -24,7 +24,6 @@ const HomePage = (
   const [userMedications, setUserMedications] = useState([]);
   const [failedAuth, setFailedAuth] = useState(false);
 
-  const useriid = 4;
   const fetchAuthorizedUser = async (token) => {
     try {
       const response = await axios.get(getCurrentUserEndpoint(), {
@@ -33,7 +32,7 @@ const HomePage = (
         },
       });
       setUser(response.data);
-      console.log(response.data);
+      // console.log(response.data);
 
       const medResponse = await axios.get(
         getUserMedicationsEndpoint(response.data.id),

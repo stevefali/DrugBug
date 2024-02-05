@@ -63,9 +63,7 @@ const LoginPage = () => {
             placeholder="Password"
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
+
         <DrugBugButton text={"Log In"} type="submit" />
         {error && <div className="signup__message">{error}</div>}
       </Form>
