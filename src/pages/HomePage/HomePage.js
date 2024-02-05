@@ -13,7 +13,7 @@ const HomePage = ({ userMedications }) => {
   // const [userMedications, setUserMedications] = useState([]);
 
   // // Temporarily set the userId to 3
-  // const userId = 3;
+  // // const userId = 3;
 
   // const fetchUserMedications = async () => {
   //   try {
