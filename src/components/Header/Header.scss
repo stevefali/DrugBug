@@ -1,0 +1,13 @@
+.login-holder {
+  display: flex;
+  &__name {
+    color: white;
+    margin-bottom: 0;
+    font-size: 1.125rem;
+  }
+  &__button {
+    color: white;
+    padding: 0;
+    margin-left: 1rem;
+  }
+}

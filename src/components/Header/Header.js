@@ -5,26 +5,27 @@ import Navbar from "react-bootstrap/Navbar";
 import "./Header.scss";
 import LinkContainer from "react-router-bootstrap/LinkContainer";
 import logo from "../../logo.svg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
-function Header() {
+function Header({ user, handleLogout }) {
   const navigate = useNavigate();
   return (
     <header>
       <Navbar
         expand="lg"
-        className="navbar navbar-expand-lg bg-primary"
+        className="navbar navbar-expand-lg bg-success"
         data-bs-theme="dark"
       >
         <Container>
           <Navbar.Brand href="/">
-            <img
+            {/* <img
               alt=""
               src={logo}
               width="30"
               height="30"
               className="d-inline-block align-top "
-            />{" "}
+            />{" "} */}
             DrugBug
           </Navbar.Brand>
 
@@ -44,6 +45,31 @@ function Header() {
             </Nav>
           </Navbar.Collapse>
           {/* <NotificationAPIContainer userId="1234" /> */}
+          {user ? (
+            <div className="login-holder">
+              {" "}
+              <p className="login-holder__name">{user.first_name}</p>
+              <Button
+                variant="link"
+                className="login-holder__button"
+                onClick={handleLogout}
+                href="/login"
+              >
+                Log Out
+              </Button>
+            </div>
+          ) : (
+            <div className="login-holder">
+              <Button
+                variant="link"
+                className="login-holder__button"
+                // onClick={navigate("/login")}
+                href="/login"
+              >
+                Log In
+              </Button>
+            </div>
+          )}
         </Container>
       </Navbar>
     </header>

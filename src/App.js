@@ -55,17 +55,30 @@ function App() {
     fetchAuthorizedUser(token);
   }, []);
 
+  const handleLogout = () => {
+    sessionStorage.removeItem("token");
+    setUser(null);
+    setFailedAuth(true);
+  };
+
   return (
     <BrowserRouter>
-      <Header />
+      <Header user={user} handleLogout={handleLogout} />
       <Routes>
         <Route
           path="/"
-          element={<HomePage userMedications={userMedications} />}
+          element={
+            <HomePage
+            // userMedications={userMedications}
+            // failedAuth={failedAuth}
+            // setFailedAuth={setFailedAuth}
+            // fetchAuthorizedUser={fetchAuthorizedUser}
+            />
+          }
         />
         <Route path="/medication" element={<AddEditPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage user={user} />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
