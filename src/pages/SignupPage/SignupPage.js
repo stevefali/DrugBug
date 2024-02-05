@@ -79,12 +79,7 @@ const SignupPage = () => {
             placeholder="Password"
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
-        {/* <Button variant="primary" type="submit">
-        Submit
-      </Button> */}
+
         <DrugBugButton text={"Sign Up"} type="submit" />
         {success && <div className="signup__message">Signed up!</div>}
         {error && <div className="signup__message">{error}</div>}

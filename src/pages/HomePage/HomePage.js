@@ -44,6 +44,7 @@ const HomePage = (
         }
       );
 
+      console.log(medResponse.data);
       setUserMedications(medResponse.data.medications);
     } catch (error) {
       console.log(error);

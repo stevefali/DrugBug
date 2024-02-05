@@ -63,16 +63,16 @@ function MedicineForm({
         alert("Please fill all required fields");
       }
     }
-    submitResult({
-      medicine_name,
-      amount_remaining,
+
+    submitResult(
+      formRef.current.medicine_name.value,
+      formRef.current.amount_remaining.value,
       user_id,
-      refill_reminder,
-      refill_reminder_date,
-      refilled_on,
-      amount_unit,
-      submitResult,
-    });
+      isRefillReminder ? 1 : 0,
+      new Date(formRef.current.reminder_date.value).getMilliseconds(),
+      new Date(formRef.current.refilled_on.value).getMilliseconds(),
+      formRef.current.amount_unit.value
+    );
   };
 
   const handleChange = (event) => {
@@ -113,7 +113,7 @@ function MedicineForm({
             placeholder="mg"
             className="medication-form__field--units"
             name="amount_unit"
-            value={fieldValues.amount_units}
+            value={fieldValues.amount_unit}
             onChange={handleChange}
           />
         </Form.Group>

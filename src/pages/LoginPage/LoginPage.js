@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import { useState, useRef, useEffect } from "react";
 import { postLoginEndpoint } from "../../utils/networkUtils";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import DrugBugButton from "../../components/DrugBugButton/DrugBugButton";
 
@@ -67,6 +67,9 @@ const LoginPage = () => {
         <DrugBugButton text={"Log In"} type="submit" />
         {error && <div className="signup__message">{error}</div>}
       </Form>
+      <p>
+        Don't have an account? <Link to="/signup">Sign up</Link>{" "}
+      </p>
     </Container>
   );
 };

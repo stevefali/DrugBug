@@ -63,19 +63,12 @@ function App() {
     <BrowserRouter>
       <Header user={user} handleLogout={handleLogout} />
       <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/medication" element={<AddEditPage isAdd={true} />} />
         <Route
-          path="/"
-          element={
-            <HomePage
-            // userMedications={userMedications}
-            // failedAuth={failedAuth}
-            // setFailedAuth={setFailedAuth}
-            // fetchAuthorizedUser={fetchAuthorizedUser}
-            />
-          }
+          path="/medication/:medId"
+          element={<AddEditPage isAdd={false} />}
         />
-        <Route path="/medication" element={<AddEditPage />} />
-        <Route path="/medication/:medId" element={<AddEditPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage user={user} />} />
         <Route path="*" element={<NotFoundPage />} />
