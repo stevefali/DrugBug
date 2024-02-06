@@ -15,8 +15,9 @@ const MedicineCard = ({ medication }) => {
     navigate(`/medication/${medication.id}`);
   };
   //
-
-  const date = new Date(medication.refill_reminder_date).toDateString();
+  let interval;
+  let cronDescription;
+  const refillBy = new Date(medication.refill_reminder_date).toDateString();
   return (
     <Card className="medicine-card border-success bg-light mb-3">
       <Card.Header className="medicine-card__header">
@@ -30,10 +31,13 @@ const MedicineCard = ({ medication }) => {
       <Card.Body className="medicine-card__body">
         <ListGroup variant="flush" className="medicine-card__list-group">
           {medication.doses.map((dose) => {
-            const interval = parser.parseExpression(dose.cron);
-            const cronDescription = cronstrue.toString(dose.cron, {
-              verbose: true,
-            });
+            if (dose.cron) {
+              interval = parser.parseExpression(dose.cron);
+              cronDescription = cronstrue.toString(dose.cron, {
+                verbose: true,
+              });
+            }
+
             return (
               <ListGroup.Item
                 className="bg-light medicine-card__item"
@@ -44,7 +48,14 @@ const MedicineCard = ({ medication }) => {
                   className="d-flex justify-content-between medicine-card__dose"
                 >
                   <p className="dose-label">{`${dose.amount} ${medication.amount_unit}`}</p>
-                  <p className="dose-description">{cronDescription}</p>
+                  {dose.cron && (
+                    <p className="dose-description">{cronDescription}</p>
+                  )}
+                  {dose.onetime_time && (
+                    <p className="dose-description">
+                      {Date(dose.onetime_time).match(/^([^:]+:[^:]1)/g)}
+                    </p>
+                  )}
                 </div>
                 <Stack
                   direction="horizontal"
@@ -58,8 +69,16 @@ const MedicineCard = ({ medication }) => {
                   className="d-flex justify-content-between"
                 >
                   <div className="dose-date">
-                    <div>{interval.next().toDate().toDateString()}</div>
-                    <div>{interval.next().toDate().toLocaleTimeString()}</div>
+                    {/* <div>{interval.next().toDate().toDateString()}</div>
+                    <div>{interval.next().toDate().toLocaleTimeString()}</div> */}
+                    {dose.cron && (
+                      <>
+                        <div>{interval.next().toDate().toDateString()}</div>
+                        <div>
+                          {interval.next().toDate().toLocaleTimeString()}
+                        </div>
+                      </>
+                    )}
                   </div>
                   <div className={`reminder reminder--${dose.dose_reminder}`}>
                     {dose.dose_reminder ? "On" : "Off"}
@@ -88,7 +107,7 @@ const MedicineCard = ({ medication }) => {
               <div className="amount-remaining">
                 <div>{`${medication.amount_remaining} ${medication.amount_unit}`}</div>
               </div>
-              <div>{date}</div>
+              <div>{refillBy}</div>
               <div
                 className={`reminder reminder--${medication.refill_reminder}`}
               >
