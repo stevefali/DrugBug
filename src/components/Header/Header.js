@@ -63,7 +63,6 @@ function Header({ user, handleLogout }) {
               <Button
                 variant="link"
                 className="login-holder__button"
-                // onClick={navigate("/login")}
                 href="/login"
               >
                 Log In

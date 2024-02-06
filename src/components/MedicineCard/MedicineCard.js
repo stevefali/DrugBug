@@ -29,18 +29,6 @@ const MedicineCard = ({ medication }) => {
       </Card.Header>
       <Card.Body className="medicine-card__body">
         <ListGroup variant="flush" className="medicine-card__list-group">
-          {/* <ListGroup.Item>{desc}</ListGroup.Item> */}
-          {/* <ListGroup.Item className="bg-light medicine-card__item">
-            <Stack
-              direction="horizontal"
-              className="d-flex justify-content-between"
-            >
-              <p className="dose-label">Doses</p>
-            
-            </Stack>
-          </ListGroup.Item> */}
-
-          {/* <ListGroup.Item className="next-label"></ListGroup.Item> */}
           {medication.doses.map((dose) => {
             const interval = parser.parseExpression(dose.cron);
             const cronDescription = cronstrue.toString(dose.cron, {
@@ -64,8 +52,6 @@ const MedicineCard = ({ medication }) => {
                 >
                   <p className="dose-label">Next Dose</p>
                   <p className="dose-label">Notifications</p>
-                  {/* <p className="dose-label"></p> */}
-                  {/* <p>Upcoming Doses</p> */}
                 </Stack>
                 <Stack
                   direction="horizontal"
@@ -82,8 +68,7 @@ const MedicineCard = ({ medication }) => {
               </ListGroup.Item>
             );
           })}
-          {/* <ListGroup.Item>{interv.next().toString()}</ListGroup.Item>
-        <ListGroup.Item>{interv.next().toString()}</ListGroup.Item>*/}
+
           <ListGroup.Item className="bg-light">
             <Stack
               direction="horizontal"
@@ -92,7 +77,6 @@ const MedicineCard = ({ medication }) => {
               <div className="dose-label">Amount Remaining</div>
               <div className="dose-label">Refill By</div>
               <div className="dose-label">Notification</div>
-              {/* <div className="button-space"></div> */}
             </Stack>
           </ListGroup.Item>
 
@@ -103,7 +87,6 @@ const MedicineCard = ({ medication }) => {
             >
               <div className="amount-remaining">
                 <div>{`${medication.amount_remaining} ${medication.amount_unit}`}</div>
-                {/* <div>{medication.amount_unit}</div> */}
               </div>
               <div>{date}</div>
               <div
@@ -111,11 +94,8 @@ const MedicineCard = ({ medication }) => {
               >
                 {medication.refill_reminder ? "On" : "Off"}
               </div>
-              {/* <Button>Change</Button> */}
             </Stack>
           </ListGroup.Item>
-
-          {/* <ListGroup.Item>{interv.next().toString()}</ListGroup.Item> */}
         </ListGroup>
       </Card.Body>
     </Card>

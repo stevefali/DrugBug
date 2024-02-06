@@ -2,8 +2,7 @@ import Form from "react-bootstrap/Form";
 
 import "./MedicineForm.scss";
 import DrugBugButton from "../DrugBugButton/DrugBugButton";
-import DoseForm from "../DoseForm/DoseForm";
-import { ListGroup, Stack } from "react-bootstrap";
+
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
@@ -19,11 +18,8 @@ function MedicineForm({
   submitResult,
   doDelete,
   isAdd,
+  medicationId,
 }) {
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  // };
-
   const navigate = useNavigate();
 
   const formRef = useRef();
@@ -31,7 +27,7 @@ function MedicineForm({
   const initialFieldValues = {
     medicine_name: medicine_name,
     amount_remaining: amount_remaining,
-    // refill_reminder: refill_reminder,
+    refill_reminder: refill_reminder,
     refill_reminder_date: refill_reminder_date,
     refilled_on: refilled_on,
     amount_unit: amount_unit,
@@ -50,18 +46,17 @@ function MedicineForm({
 
   const handleAddDose = (event) => {
     event.preventDefault();
-    navigate("/dose");
+    navigate(`/newdose/${medicationId}`);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Verify input
     const {
       medicine_name,
       amount_remaining,
       amount_unit,
       refilled_on,
-      reminder_date,
+      refill_reminder_date,
       refill_reminder,
     } = formRef.current;
     const neededFields = [
@@ -81,7 +76,7 @@ function MedicineForm({
       formRef.current.amount_remaining.value,
       user_id,
       isRefillReminder ? 1 : 0,
-      new Date(formRef.current.reminder_date.value).getTime(),
+      new Date(formRef.current.refill_reminder_date.value).getTime(),
       new Date(formRef.current.refilled_on.value).getTime(),
       formRef.current.amount_unit.value
     );
@@ -147,8 +142,8 @@ function MedicineForm({
           className="medication-form__field"
           type="date"
           placeholder="Date"
-          name="reminder_date"
-          value={fieldValues.reminder_date}
+          name="refill_reminder_date"
+          value={fieldValues.refill_reminder_date}
           onChange={handleChange}
         />
       </Form.Group>
@@ -158,33 +153,18 @@ function MedicineForm({
           type="checkbox"
           label="Refill Reminder"
           name="refill_reminder"
-          // value={fieldValues.refill_reminder}
+          value={fieldValues.refill_reminder}
           onChange={handleRefillReminder}
           checked={isRefillReminder}
         />
       </Form.Group>
-      {/* <ListGroup>
-        {doseForms.map((doseForm) => {
-          return (
-            <ListGroup.Item
-              key={doseForms.indexOf(doseForm)}
-              className="medication-form__field "
-            >
-              <DoseForm setDoseForms={setDoseForms} />
-            </ListGroup.Item>
-          );
-        })}
-      </ListGroup> */}
+
       <div className="medication-form__submit">
         <DrugBugButton text={"Submit"} handleClick={handleSubmit} />
       </div>
       {isAdd || (
         <div className="medication-form__submit medication-form__submit--extra">
-          <Button
-            variant="secondary"
-            handleClick={handleDelete}
-            className="delete"
-          >
+          <Button variant="secondary" onClick={handleDelete} className="delete">
             Delete
           </Button>
           <DrugBugButton
