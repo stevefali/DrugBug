@@ -6,6 +6,7 @@ import DoseForm from "../DoseForm/DoseForm";
 import { ListGroup, Stack } from "react-bootstrap";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 function MedicineForm({
   medicine_name,
@@ -45,6 +46,11 @@ function MedicineForm({
   const handleDelete = (event) => {
     event.preventDefault();
     doDelete();
+  };
+
+  const handleAddDose = (event) => {
+    event.preventDefault();
+    navigate("/dose");
   };
 
   const handleSubmit = (event) => {
@@ -173,11 +179,18 @@ function MedicineForm({
         <DrugBugButton text={"Submit"} handleClick={handleSubmit} />
       </div>
       {isAdd || (
-        <div className="medication-form__submit">
-          <DrugBugButton
-            text={"Delete "}
+        <div className="medication-form__submit medication-form__submit--extra">
+          <Button
+            variant="secondary"
             handleClick={handleDelete}
             className="delete"
+          >
+            Delete
+          </Button>
+          <DrugBugButton
+            text={"Add Dose"}
+            className="add-dose"
+            handleClick={handleAddDose}
           />
         </div>
       )}

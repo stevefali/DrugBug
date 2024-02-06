@@ -17,8 +17,14 @@
       border-color: #ced4da;
     }
     &__check {
-      // border-color: red;
-      // color: green;
+      border-color: #ced4da;
     }
+  }
+}
+
+.one-time {
+  // margin-bottom: 0;
+  &__input {
+    margin-left: 1rem;
   }
 }

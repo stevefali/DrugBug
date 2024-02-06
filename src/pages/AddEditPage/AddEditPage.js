@@ -48,12 +48,7 @@ const AddEditPage = ({ isAdd }) => {
             },
           }
         );
-        // let selectedMedication = medResponse.data.medications.filter(
-        //   (medication) => {
-        //     console.log("internal", medication.id);
-        //     return medId === medication.id;
-        //   }
-        // );
+
         let selectedMedication = {};
         for (const medication of medResponse.data.medications) {
           if (medication.id == medId) {
@@ -180,8 +175,8 @@ const AddEditPage = ({ isAdd }) => {
           medicine_name={""}
           amount_remaining={""}
           user_id={user.id}
-          refill_reminder="false"
-          refill_reminder_date={" "}
+          refill_reminder={0}
+          refill_reminder_date={""}
           refilled_on={new Date(Date.now()).toISOString().substring(0, 10)}
           amount_unit={""}
           submitResult={addMedication}

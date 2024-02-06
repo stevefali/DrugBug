@@ -6,8 +6,11 @@
   // justify-content: space-between;
   &__submit {
     margin-top: 1rem;
+    &--extra {
+      display: flex;
+      justify-content: space-between;
+    }
   }
-
   &__field {
     border-color: #ced4da;
     &--units {
@@ -29,6 +32,10 @@
   justify-content: space-between;
 }
 
+.form-check-input {
+  border-color: #ced4da;
+}
+
 .plus-minus {
   display: flex;
   flex-direction: column;
@@ -46,6 +53,5 @@
   }
 }
 
-.delete {
-  background-color: red;
+.add-dose {
 }

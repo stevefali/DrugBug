@@ -6,7 +6,6 @@ import Stack from "react-bootstrap/Stack";
 import { useNavigate } from "react-router-dom";
 import cronstrue from "cronstrue";
 import parser from "cron-parser";
-import datejs from "datejs";
 
 const MedicineCard = ({ medication }) => {
   const navigate = useNavigate();
