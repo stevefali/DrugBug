@@ -1,15 +1,15 @@
 .frequency-container {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .dose-form {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
   justify-content: space-between;
-  //   background-color: green;
+  // min-height: 15rem;
   &__field {
     border-color: #ced4da;
     &--units {
@@ -27,4 +27,8 @@
   &__input {
     margin-left: 1rem;
   }
+}
+.cron {
+  display: flex;
+  flex-direction: column;
 }

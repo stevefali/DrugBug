@@ -9,13 +9,12 @@ import { useState, useEffect } from "react";
 import DoseForm from "../../components/DoseForm/DoseForm";
 import { useLocation, useParams } from "react-router";
 
-const DoseEditPage = ({ isAdd }) => {
+const DoseAddPage = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState("");
   const [failedAuth, setFailedAuth] = useState(false);
-  const [userMedication, setUserMedication] = useState("");
 
-  const { doseId } = useParams();
+  const { medicationId } = useParams();
 
   let token = null;
 
@@ -28,25 +27,14 @@ const DoseEditPage = ({ isAdd }) => {
       });
       setUser(userResponse.data);
 
-      //   if (!isAdd) {
-      //     const medResponse = await axios.get(
-      //       getUserMedicationsEndpoint(userResponse.data.id),
-      //       {
-      //         headers: {
-      //           Authorization: `Bearer ${token}`,
-      //         },
-      //       }
-      //     );
-
-      // let selectedMedication = {};
-      // for (const medication of medResponse.data.medications) {
-      //   if (medication.id == medId) {
-      //     selectedMedication = medication;
-      //   }
-      // }
-
-      // setUserMedication(selectedMedication);
-      //   }
+      const medResponse = await axios.get(
+        getUserMedicationsEndpoint(userResponse.data.id),
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
     } catch (error) {
       console.log(error);
     }
@@ -61,11 +49,12 @@ const DoseEditPage = ({ isAdd }) => {
     fetchAuthorizedUser(token);
   }, []);
 
+  console.log(medicationId);
   return (
     <Container>
-      <DoseForm />
+      <DoseForm medication_id={medicationId} />
     </Container>
   );
 };
 
-export default DoseEditPage;
+export default DoseAddPage;

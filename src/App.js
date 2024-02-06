@@ -15,6 +15,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import DoseEditPage from "./pages/DoseEditPage/DoseEditPage";
+import DoseAddPage from "./pages/DoseEditPage/DoseAddPage";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -70,8 +71,8 @@ function App() {
           path="/medication/:medId"
           element={<AddEditPage isAdd={false} />}
         />
-        <Route path="/dose" element={<DoseEditPage isAdd={true} />} />
-        <Route path="/dose/:doseId" element={<DoseEditPage isAdd={false} />} />
+        <Route path="/newdose/:medicationId" element={<DoseAddPage />} />
+        <Route path="/dose/:doseId" element={<DoseEditPage />} />
 
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage user={user} />} />

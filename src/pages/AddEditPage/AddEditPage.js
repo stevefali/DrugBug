@@ -1,21 +1,18 @@
 import Container from "react-bootstrap/Container";
 import MedicineForm from "../../components/MedicineForm/MedicineForm";
-import DoseForm from "../../components/DoseForm/DoseForm";
+
 import "./AddEditPage.scss";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import {
-  deleteDoseEndpoint,
   getCurrentUserEndpoint,
   postAddMedicationEndpoint,
   putModifyMedicationEndpoint,
   deleteMedicationEndpoint,
 } from "../../utils/networkUtils";
-import DrugBugButton from "../../components/DrugBugButton/DrugBugButton";
-import Form from "react-bootstrap/Form";
+
 import { getUserMedicationsEndpoint } from "../../utils/networkUtils";
 import { useNavigate, useParams } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
 
 const AddEditPage = ({ isAdd }) => {
   const [user, setUser] = useState(null);
@@ -82,7 +79,6 @@ const AddEditPage = ({ isAdd }) => {
     amountUnit
   ) => {
     try {
-      // console.log(amount_unit);
       token = sessionStorage.getItem("token");
       const data = {
         medications: [
@@ -133,7 +129,6 @@ const AddEditPage = ({ isAdd }) => {
           refill_reminder_date: refillReminderDate,
           refilled_on: refilledOn,
           amount_unit: amountUnit,
-          // timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         },
         {
           headers: {
@@ -149,6 +144,7 @@ const AddEditPage = ({ isAdd }) => {
   };
 
   const deleteMedication = async () => {
+    console.log("delete");
     token = sessionStorage.getItem("token");
     try {
       const response = await axios.delete(deleteMedicationEndpoint(medId), {
@@ -177,7 +173,7 @@ const AddEditPage = ({ isAdd }) => {
           user_id={user.id}
           refill_reminder={0}
           refill_reminder_date={""}
-          refilled_on={new Date(Date.now()).toISOString().substring(0, 10)}
+          refilled_on={""}
           amount_unit={""}
           submitResult={addMedication}
           isAdd={isAdd}
@@ -197,6 +193,7 @@ const AddEditPage = ({ isAdd }) => {
       refilled_on,
       amount_unit,
     } = userMedication;
+
     return (
       <Container>
         <h1>Edit Medication</h1>
@@ -205,12 +202,15 @@ const AddEditPage = ({ isAdd }) => {
           amount_remaining={amount_remaining}
           user_id={user_id}
           refill_reminder={refill_reminder}
-          refill_reminder_date={refill_reminder_date}
+          refill_reminder_date={new Date(refill_reminder_date)
+            .toISOString()
+            .substring(0, 10)}
           refilled_on={new Date(refilled_on).toISOString().substring(0, 10)}
           amount_unit={amount_unit}
           submitResult={editMedication}
           doDelete={deleteMedication}
           isAdd={isAdd}
+          medicationId={medId}
         />
         {error && <p>Error updating medication</p>}
       </Container>
