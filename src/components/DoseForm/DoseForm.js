@@ -2,9 +2,8 @@ import "./DoseForm.scss";
 import Form from "react-bootstrap/Form";
 import DrugBugButton from "../DrugBugButton/DrugBugButton";
 import { useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate } from "react-router";
 import parser from "cron-parser";
-import { Dropdown } from "react-bootstrap";
 import { postAddMedicationEndpoint } from "../../utils/networkUtils";
 import axios from "axios";
 
@@ -74,15 +73,6 @@ const DoseForm = ({
 
       cron = cronString;
     }
-    const test = {
-      medication_id: medication_id,
-      cron: isOneTime ? null : cron,
-      onetime_time: isOneTime
-        ? new Date(formRef.current.onetime.value).getTime()
-        : null,
-      amount: formRef.current.amount.value,
-      dose_reminder: isDoseReminder ? 1 : 0,
-    };
 
     addDose();
   };
