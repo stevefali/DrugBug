@@ -69,8 +69,6 @@ const MedicineCard = ({ medication }) => {
                   className="d-flex justify-content-between"
                 >
                   <div className="dose-date">
-                    {/* <div>{interval.next().toDate().toDateString()}</div>
-                    <div>{interval.next().toDate().toLocaleTimeString()}</div> */}
                     {dose.cron && (
                       <>
                         <div>{interval.next().toDate().toDateString()}</div>
