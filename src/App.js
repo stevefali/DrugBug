@@ -1,3 +1,4 @@
+import logo from "./logo.svg";
 import "./App.scss";
 import "bootswatch/dist/minty/bootstrap.min.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -18,6 +19,8 @@ import DoseAddPage from "./pages/DoseEditPage/DoseAddPage";
 
 function App() {
   const [user, setUser] = useState(null);
+  const [userMedications, setUserMedications] = useState([]);
+  const [failedAuth, setFailedAuth] = useState(false);
 
   const fetchAuthorizedUser = async (token) => {
     try {
