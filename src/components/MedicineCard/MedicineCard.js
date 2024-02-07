@@ -53,7 +53,7 @@ const MedicineCard = ({ medication }) => {
                   )}
                   {dose.onetime_time && (
                     <p className="dose-description">
-                      {Date(dose.onetime_time).match(/^([^:]+:[^:]1)/g)}
+                      {Date(dose.onetime_time).match(/^([^:]+:[^:]\d)/g)}
                     </p>
                   )}
                 </div>
