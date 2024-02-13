@@ -47,6 +47,8 @@ function App() {
   };
 
   useEffect(() => {
+    document.title = "DrugBug";
+
     const token = sessionStorage.getItem("token");
     if (!token) {
       setFailedAuth(true);
@@ -65,7 +67,7 @@ function App() {
     <BrowserRouter>
       <Header user={user} handleLogout={handleLogout} />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage setUser={setUser} />} />
         <Route path="/medication" element={<AddEditPage isAdd={true} />} />
         <Route
           path="/medication/:medId"

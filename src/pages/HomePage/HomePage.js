@@ -10,17 +10,10 @@ import MedicineCard from "../../components/MedicineCard/MedicineCard";
 import { useNavigate, Link } from "react-router-dom";
 import { getCurrentUserEndpoint } from "../../utils/networkUtils";
 
-const HomePage = (
-  {
-    // userMedications,
-    // failedAuth,
-    // setFailedAuth,
-    // fetchAuthorizedUser,
-  }
-) => {
+const HomePage = ({ setUser }) => {
   const navigate = useNavigate();
 
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
   const [userMedications, setUserMedications] = useState([]);
   const [failedAuth, setFailedAuth] = useState(false);
 
