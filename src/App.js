@@ -30,17 +30,6 @@ function App() {
         },
       });
       setUser(response.data);
-
-      const medResponse = await axios.get(
-        getUserMedicationsEndpoint(response.data.id),
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      setUserMedications(medResponse.data.medications);
     } catch (error) {
       console.log(error);
     }
