@@ -21,3 +21,5 @@ export const postRegisterEndpoint = () => `${BASE}/user/register`;
 export const postLoginEndpoint = () => `${BASE}/user/login`;
 
 export const getCurrentUserEndpoint = () => `${BASE}/user/current`;
+
+export const postWebPushEndpoint = () => `${BASE}/user/webpush`;

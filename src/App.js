@@ -10,12 +10,14 @@ import SignupPage from "./pages/SignupPage/SignupPage";
 import {
   getCurrentUserEndpoint,
   getUserMedicationsEndpoint,
+  postWebPushEndpoint,
 } from "./utils/networkUtils";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import DoseEditPage from "./pages/DoseEditPage/DoseEditPage";
 import DoseAddPage from "./pages/DoseEditPage/DoseAddPage";
+import NotificationAPI from "notificationapi-js-client-sdk";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -43,8 +45,48 @@ function App() {
       setFailedAuth(true);
     }
 
-    fetchAuthorizedUser(token);
+    if (!user) {
+      fetchAuthorizedUser(token);
+    }
   }, []);
+
+  const sendWebPushTokens = async (pushSub) => {
+    try {
+      const token = sessionStorage.getItem("token");
+
+      await axios.post(postWebPushEndpoint(), pushSub, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    console.log("Doing useEffect on user");
+    if (user) {
+      navigator.serviceWorker.ready.then((worker) => {
+        worker.pushManager
+          .permissionState({ userVisibleOnly: true })
+          .then((perm) => {
+            if (perm === "prompt") {
+              const notificationApi = new NotificationAPI({
+                clientId: process.env.REACT_APP_NOTIFICATIONAPI_CLIENT_ID,
+                userId: user.id.toString(),
+              });
+              notificationApi.askForWebPushPermission();
+            }
+            if (perm === "granted") {
+              worker.pushManager.getSubscription().then((sub) => {
+                sendWebPushTokens(sub.toJSON());
+              });
+            }
+          });
+      });
+    }
+  }, [user]);
 
   const handleLogout = () => {
     sessionStorage.removeItem("token");
@@ -54,9 +96,13 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Header user={user} handleLogout={handleLogout} />
+      <Header
+        user={user}
+        handleLogout={handleLogout}
+        sendWebPushTokens={sendWebPushTokens}
+      />
       <Routes>
-        <Route path="/" element={<HomePage setUser={setUser} />} />
+        <Route path="/" element={<HomePage user={user} setUser={setUser} />} />
         <Route path="/medication" element={<AddEditPage isAdd={true} />} />
         <Route
           path="/medication/:medId"
