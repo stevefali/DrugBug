@@ -10,17 +10,10 @@ import MedicineCard from "../../components/MedicineCard/MedicineCard";
 import { useNavigate, Link } from "react-router-dom";
 import { getCurrentUserEndpoint } from "../../utils/networkUtils";
 
-const HomePage = (
-  {
-    // userMedications,
-    // failedAuth,
-    // setFailedAuth,
-    // fetchAuthorizedUser,
-  }
-) => {
+const HomePage = ({ user, setUser }) => {
   const navigate = useNavigate();
 
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
   const [userMedications, setUserMedications] = useState([]);
   const [failedAuth, setFailedAuth] = useState(false);
 
@@ -31,7 +24,9 @@ const HomePage = (
           Authorization: `Bearer ${token}`,
         },
       });
-      setUser(response.data);
+      if (!user) {
+        setUser(response.data);
+      }
 
       const medResponse = await axios.get(
         getUserMedicationsEndpoint(response.data.id),

@@ -1,15 +1,44 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-// import NotificationAPIContainer from "../../memos/NotificationApiContainer";
 import "./Header.scss";
 import LinkContainer from "react-router-bootstrap/LinkContainer";
-import logo from "../../logo.svg";
 import { useNavigate, Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import NotificationAPI from "notificationapi-js-client-sdk";
+import { ReactComponent as SettingsIcon } from "../../settings.svg";
+import NotificationAPIContainer from "../../memo/NotificationApiContainer";
 
-function Header({ user, handleLogout }) {
+function Header({ user, handleLogout, sendWebPushTokens }) {
   const navigate = useNavigate();
+
+  const onSettingsClick = (event) => {
+    event.preventDefault();
+    if (user) {
+      const notificationApi = new NotificationAPI({
+        clientId: process.env.REACT_APP_NOTIFICATIONAPI_CLIENT_ID,
+        userId: user.id.toString(),
+      });
+
+      navigator.serviceWorker.ready.then((worker) => {
+        worker.pushManager
+          .permissionState({ userVisibleOnly: true })
+          .then((perm) => {
+            if (perm === "prompt") {
+              notificationApi.askForWebPushPermission();
+            }
+            if (perm === "granted") {
+              worker.pushManager.getSubscription().then((sub) => {
+                sendWebPushTokens(sub.toJSON());
+              });
+            }
+          });
+      });
+
+      notificationApi.showUserPreferences();
+    }
+  };
+
   return (
     <header>
       <Navbar
@@ -44,7 +73,6 @@ function Header({ user, handleLogout }) {
               </Nav.Item>
             </Nav>
           </Navbar.Collapse>
-          {/* <NotificationAPIContainer userId="1234" /> */}
           {user ? (
             <div className="login-holder">
               {" "}
@@ -57,6 +85,12 @@ function Header({ user, handleLogout }) {
               >
                 Log Out
               </Button>
+              <SettingsIcon
+                fill="white"
+                className="settings-button"
+                onClick={onSettingsClick}
+              />
+              {/* <NotificationAPIContainer userId={user.id} /> */}
             </div>
           ) : (
             <div className="login-holder">
