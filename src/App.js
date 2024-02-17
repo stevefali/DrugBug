@@ -69,6 +69,8 @@ function App() {
     if (user) {
       console.log("user useEffect in App.js");
       navigator.serviceWorker.ready.then((worker) => {
+        console.log(worker);
+        console.log(process.env.REACT_APP_NOTIFICATIONAPI_CLIENT_ID);
         worker.pushManager
           .permissionState({ userVisibleOnly: true })
           .then((perm) => {
