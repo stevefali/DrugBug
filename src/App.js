@@ -67,6 +67,7 @@ function App() {
 
   useEffect(() => {
     if (user) {
+      console.log("user useEffect in App.js");
       navigator.serviceWorker.ready.then((worker) => {
         worker.pushManager
           .permissionState({ userVisibleOnly: true })
