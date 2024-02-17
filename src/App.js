@@ -71,6 +71,7 @@ function App() {
         worker.pushManager
           .permissionState({ userVisibleOnly: true })
           .then((perm) => {
+            console.log(perm);
             if (perm === "prompt") {
               const notificationApi = new NotificationAPI({
                 clientId: process.env.REACT_APP_NOTIFICATIONAPI_CLIENT_ID,
