@@ -23,3 +23,7 @@ export const postLoginEndpoint = () => `${BASE}/user/login`;
 export const getCurrentUserEndpoint = () => `${BASE}/user/current`;
 
 export const postWebPushEndpoint = () => `${BASE}/user/webpush`;
+
+export const deleteUserEndpoint = () => `${BASE}/user/delete`;
+
+export const putEditUserEndpoint = () => `${BASE}/user/edit`;

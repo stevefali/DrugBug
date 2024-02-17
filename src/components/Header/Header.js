@@ -39,6 +39,11 @@ function Header({ user, handleLogout, sendWebPushTokens }) {
     }
   };
 
+  const handleAccountClick = (event) => {
+    event.preventDefault();
+    navigate("/account");
+  };
+
   return (
     <header>
       <Navbar
@@ -68,7 +73,7 @@ function Header({ user, handleLogout, sendWebPushTokens }) {
               </Nav.Item>
               <Nav.Item>
                 <LinkContainer to={"/medication"}>
-                  <Nav.Link>Medication</Nav.Link>
+                  <Nav.Link>Add Medication</Nav.Link>
                 </LinkContainer>
               </Nav.Item>
             </Nav>
@@ -76,7 +81,9 @@ function Header({ user, handleLogout, sendWebPushTokens }) {
           {user ? (
             <div className="login-holder">
               {" "}
-              <p className="login-holder__name">{user.first_name}</p>
+              <p className="login-holder__name" onClick={handleAccountClick}>
+                {user.first_name}
+              </p>
               <Button
                 variant="link"
                 className="login-holder__button"

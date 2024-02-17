@@ -18,6 +18,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import DoseEditPage from "./pages/DoseEditPage/DoseEditPage";
 import DoseAddPage from "./pages/DoseEditPage/DoseAddPage";
 import NotificationAPI from "notificationapi-js-client-sdk";
+import AccountPage from "./pages/AccountPage/AccountPage";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -65,7 +66,6 @@ function App() {
   };
 
   useEffect(() => {
-    console.log("Doing useEffect on user");
     if (user) {
       navigator.serviceWorker.ready.then((worker) => {
         worker.pushManager
@@ -113,6 +113,16 @@ function App() {
 
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage user={user} />} />
+        <Route
+          path="/account"
+          element={
+            <AccountPage
+              handleLogout={handleLogout}
+              currentUser={user}
+              setCurrentUser={fetchAuthorizedUser}
+            />
+          }
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
