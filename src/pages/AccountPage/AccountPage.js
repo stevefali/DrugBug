@@ -1,15 +1,71 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./AccountPage.scss";
 import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { deleteUserEndpoint } from "../../utils/networkUtils";
 import axios from "axios";
 import { useNavigate } from "react-router";
 
-const AccountPage = ({ handleLogout, user }) => {
+const AccountPage = ({ handleLogout, currentUser }) => {
   const [confirm, setConfirm] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+  const [user, setUser] = useState(currentUser);
+
+  let initialFormValues = {
+    first_name: user ? user.first_name : "",
+    last_name: user ? user.last_name : "",
+    email: user ? user.email : "",
+  };
+
+  const [formValues, setFormValues] = useState(initialFormValues);
 
   const navigate = useNavigate();
+  const formRef = useRef();
+
+  const handleFormValueChange = (event) => {
+    const { name, value } = event.target;
+    setFormValues({ ...formValues, [name]: value });
+    event.target.setCustomValidity("");
+  };
+
+  const handleEdit = (event) => {
+    event.preventDefault();
+    setIsEdit(true);
+    setFormValues({
+      first_name: user ? user.first_name : "",
+      last_name: user ? user.last_name : "",
+      email: user ? user.email : "",
+    });
+  };
+  const handleCancelEdit = (event) => {
+    event.preventDefault();
+    setIsEdit(false);
+  };
+
+  const handleSubmitForm = (event) => {
+    event.preventDefault();
+    const current = formRef.current;
+    if (
+      !!formValues.first_name.trim() &&
+      !!formValues.last_name.trim() &&
+      !!formValues.email.trim()
+    ) {
+      // TODO: Call server to edit user
+      console.log("Yup!");
+    } else {
+      if (!formValues.first_name.trim()) {
+        current.first_name.setCustomValidity("Invalid Entry");
+        console.log("nope firstName");
+      }
+      if (!formValues.last_name.trim()) {
+        current.last_name.setCustomValidity("Invalid Entry");
+      }
+      if (!formValues.email.trim()) {
+        current.email.setCustomValidity("Invalid Entry");
+      }
+    }
+  };
 
   const handleDelete = (event) => {
     event.preventDefault();
@@ -42,6 +98,14 @@ const AccountPage = ({ handleLogout, user }) => {
     }
   };
 
+  useEffect(() => {
+    setUser(currentUser);
+  }, [currentUser]);
+
+  if (!user) {
+    return <h2>Loading...</h2>;
+  }
+
   return (
     <main>
       <Container>
@@ -51,19 +115,75 @@ const AccountPage = ({ handleLogout, user }) => {
           <h5 className="account-info__item">{user.email}</h5>
         </section>
         <div className="account-edit">
-          <Button variant="success">Edit Account</Button>
+          <Button variant="success" onClick={handleEdit} disabled={isEdit}>
+            Edit Account
+          </Button>
+          {isEdit && (
+            <Form className="account-edit__form" ref={formRef}>
+              <div className="account-edit__row">
+                <Form.Group className="mb-3 account-edit__form__item">
+                  <Form.Label>First Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="First Name"
+                    name="first_name"
+                    value={formValues.first_name}
+                    onChange={handleFormValueChange}
+                    className="account-edit__input"
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3 account-edit__form__item">
+                  <Form.Label>Last Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Last Name"
+                    name="last_name"
+                    value={formValues.last_name}
+                    onChange={handleFormValueChange}
+                    className="account-edit__input"
+                  />
+                </Form.Group>
+
+                <Form.Group className="mb-3 account-edit__form__item">
+                  <Form.Label>Email address</Form.Label>
+                  <Form.Control
+                    type="email"
+                    placeholder="Email"
+                    name="email"
+                    value={formValues.email}
+                    onChange={handleFormValueChange}
+                    className="account-edit__input account-edit__input--email"
+                  />
+                </Form.Group>
+              </div>
+              <div className="account-edit__buttons">
+                <Button variant="success" onClick={handleSubmitForm}>
+                  Submit
+                </Button>
+                <Button
+                  variant="outline-secondary"
+                  className="account-edit__buttons--cancel"
+                  onClick={handleCancelEdit}
+                >
+                  Cancel
+                </Button>
+              </div>
+            </Form>
+          )}
         </div>
         <div className="account-delete">
           <Button variant="secondary" onClick={handleDelete} disabled={confirm}>
             Delete Account
           </Button>
-          <p className="account-delete__inform">
-            This action can not be undone!
-          </p>
         </div>
         {confirm && (
           <div className="account-delete__confirm">
-            <p>Are you sure you want to delete your account?</p>
+            <p className="account-delete__inform">
+              Are you sure you want to delete your account?
+            </p>
+            <p className="account-delete__inform">
+              This action can not be undone!
+            </p>
             <div className="account-delete__confirm__buttons">
               <Button
                 variant="outline-secondary"

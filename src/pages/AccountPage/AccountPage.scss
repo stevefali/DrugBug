@@ -4,6 +4,36 @@
   }
   &-edit {
     margin-bottom: 2rem;
+    &__form {
+      margin: 1rem 0;
+      &__item {
+        margin-right: 1rem;
+      }
+    }
+    &__row {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    &__input {
+      border-color: #ced4da;
+      margin-right: 1rem;
+      &:invalid {
+        border-color: red;
+      }
+      &--email {
+        width: 15rem;
+      }
+    }
+    &__name {
+      display: flex;
+    }
+    &__buttons {
+      display: flex;
+      &--cancel {
+        margin-left: 2rem;
+      }
+    }
   }
   &-delete {
     display: flex;
@@ -12,13 +42,14 @@
 
     &__inform {
       margin: 0;
-      padding-left: 1rem;
+      //   padding-left: 1rem;
     }
 
     &__confirm {
       margin-top: 1.5rem;
       &__buttons {
         display: flex;
+        margin-top: 0.5rem;
         &--cancel {
           margin-right: 2rem;
         }
