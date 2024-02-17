@@ -1,0 +1,25 @@
+.account {
+  &-edit {
+    margin-bottom: 2rem;
+  }
+  &-delete {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    &__inform {
+      margin: 0;
+      padding-left: 1rem;
+    }
+
+    &__confirm {
+      margin-top: 1.5rem;
+      &__buttons {
+        display: flex;
+        &--cancel {
+          margin-right: 2rem;
+        }
+      }
+    }
+  }
+}
