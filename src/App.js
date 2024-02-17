@@ -116,7 +116,11 @@ function App() {
         <Route
           path="/account"
           element={
-            <AccountPage handleLogout={handleLogout} currentUser={user} />
+            <AccountPage
+              handleLogout={handleLogout}
+              currentUser={user}
+              setCurrentUser={fetchAuthorizedUser}
+            />
           }
         />
         <Route path="*" element={<NotFoundPage />} />

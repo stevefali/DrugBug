@@ -3,11 +3,14 @@ import "./AccountPage.scss";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { deleteUserEndpoint } from "../../utils/networkUtils";
+import {
+  deleteUserEndpoint,
+  putEditUserEndpoint,
+} from "../../utils/networkUtils";
 import axios from "axios";
 import { useNavigate } from "react-router";
 
-const AccountPage = ({ handleLogout, currentUser }) => {
+const AccountPage = ({ handleLogout, currentUser, setCurrentUser }) => {
   const [confirm, setConfirm] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [user, setUser] = useState(currentUser);
@@ -52,7 +55,7 @@ const AccountPage = ({ handleLogout, currentUser }) => {
       !!formValues.email.trim()
     ) {
       // TODO: Call server to edit user
-      console.log("Yup!");
+      editAccount(formValues);
     } else {
       if (!formValues.first_name.trim()) {
         current.first_name.setCustomValidity("Invalid Entry");
@@ -80,6 +83,21 @@ const AccountPage = ({ handleLogout, currentUser }) => {
   const handleConfirmed = (event) => {
     event.preventDefault();
     deleteAccount();
+  };
+
+  const editAccount = async (updatedUser) => {
+    const token = sessionStorage.getItem("token");
+    try {
+      await axios.put(putEditUserEndpoint(), updatedUser, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setCurrentUser(token);
+      alert("Account successfully updated.");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const deleteAccount = async () => {
