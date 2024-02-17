@@ -115,7 +115,7 @@ function App() {
         <Route path="/login" element={<LoginPage user={user} />} />
         <Route
           path="/account"
-          element={<AccountPage handleLogout={handleLogout} />}
+          element={<AccountPage handleLogout={handleLogout} user={user} />}
         />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

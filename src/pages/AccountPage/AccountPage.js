@@ -6,7 +6,7 @@ import { deleteUserEndpoint } from "../../utils/networkUtils";
 import axios from "axios";
 import { useNavigate } from "react-router";
 
-const AccountPage = ({ handleLogout }) => {
+const AccountPage = ({ handleLogout, user }) => {
   const [confirm, setConfirm] = useState(false);
 
   const navigate = useNavigate();
@@ -46,6 +46,10 @@ const AccountPage = ({ handleLogout }) => {
     <main>
       <Container>
         <h1>My Account</h1>
+        <section className="account-info">
+          <h3 className="account-info__item">{`${user.first_name} ${user.last_name}`}</h3>
+          <h5 className="account-info__item">{user.email}</h5>
+        </section>
         <div className="account-edit">
           <Button variant="success">Edit Account</Button>
         </div>
@@ -54,7 +58,7 @@ const AccountPage = ({ handleLogout }) => {
             Delete Account
           </Button>
           <p className="account-delete__inform">
-            (This action can not be undone!)
+            This action can not be undone!
           </p>
         </div>
         {confirm && (
