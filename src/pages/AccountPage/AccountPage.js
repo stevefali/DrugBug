@@ -2,9 +2,14 @@ import { useState } from "react";
 import "./AccountPage.scss";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
+import { deleteUserEndpoint } from "../../utils/networkUtils";
+import axios from "axios";
+import { useNavigate } from "react-router";
 
-const AccountPage = () => {
+const AccountPage = ({ handleLogout }) => {
   const [confirm, setConfirm] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleDelete = (event) => {
     event.preventDefault();
@@ -18,6 +23,23 @@ const AccountPage = () => {
 
   const handleConfirmed = (event) => {
     event.preventDefault();
+    deleteAccount();
+  };
+
+  const deleteAccount = async () => {
+    const token = sessionStorage.getItem("token");
+    try {
+      await axios.delete(deleteUserEndpoint(), {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      alert("Account deleted.");
+      handleLogout();
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

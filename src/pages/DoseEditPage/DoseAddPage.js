@@ -49,7 +49,6 @@ const DoseAddPage = () => {
     fetchAuthorizedUser(token);
   }, []);
 
-  console.log(medicationId);
   return (
     <Container>
       <DoseForm medication_id={medicationId} />

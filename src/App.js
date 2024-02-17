@@ -113,7 +113,10 @@ function App() {
 
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage user={user} />} />
-        <Route path="/account" element={<AccountPage />} />
+        <Route
+          path="/account"
+          element={<AccountPage handleLogout={handleLogout} />}
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
