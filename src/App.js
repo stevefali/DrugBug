@@ -55,7 +55,7 @@ function App() {
     try {
       const token = sessionStorage.getItem("token");
 
-      await axios.post(postWebPushEndpoint(), pushSub, {
+      await axios.post(postWebPushEndpoint(), "Steve", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
