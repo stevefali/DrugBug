@@ -84,7 +84,12 @@ function App() {
             }
             if (perm === "granted") {
               worker.pushManager.getSubscription().then((sub) => {
-                sendWebPushTokens(sub.toJSON());
+                // console.log(sub);
+                const subAsJson = sub.toJSON();
+                const splitEndpoint = sub.endpoint.split("://");
+                subAsJson.endpoint = splitEndpoint[1];
+                console.log(subAsJson);
+                sendWebPushTokens(subAsJson);
               });
             }
           });
