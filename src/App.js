@@ -69,12 +69,9 @@ function App() {
     if (user) {
       console.log("user useEffect in App.js");
       navigator.serviceWorker.ready.then((worker) => {
-        console.log(worker);
-        console.log(process.env.REACT_APP_NOTIFICATIONAPI_CLIENT_ID);
         worker.pushManager
           .permissionState({ userVisibleOnly: true })
           .then((perm) => {
-            console.log(perm);
             if (perm === "prompt") {
               const notificationApi = new NotificationAPI({
                 clientId: process.env.REACT_APP_NOTIFICATIONAPI_CLIENT_ID,
@@ -84,11 +81,8 @@ function App() {
             }
             if (perm === "granted") {
               worker.pushManager.getSubscription().then((sub) => {
-                // console.log(sub);
                 const subAsJson = sub.toJSON();
-                // const splitEndpoint = sub.endpoint.split("://");
-                // subAsJson.endpoint = splitEndpoint[1];
-                // console.log(subAsJson);
+
                 sendWebPushTokens(subAsJson);
               });
             }
