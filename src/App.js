@@ -86,9 +86,9 @@ function App() {
               worker.pushManager.getSubscription().then((sub) => {
                 // console.log(sub);
                 const subAsJson = sub.toJSON();
-                const splitEndpoint = sub.endpoint.split("://");
-                subAsJson.endpoint = splitEndpoint[1];
-                console.log(subAsJson);
+                // const splitEndpoint = sub.endpoint.split("://");
+                // subAsJson.endpoint = splitEndpoint[1];
+                // console.log(subAsJson);
                 sendWebPushTokens(subAsJson);
               });
             }
