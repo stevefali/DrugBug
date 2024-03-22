@@ -39,6 +39,8 @@ function Header({ user, handleLogout, sendWebPushTokens }) {
     }
   };
 
+  console.log(window.location.pathname);
+
   const handleAccountClick = (event) => {
     event.preventDefault();
     navigate("/account");
@@ -65,15 +67,31 @@ function Header({ user, handleLogout, sendWebPushTokens }) {
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav variant="underline">
+            <Nav>
               <Nav.Item>
                 <LinkContainer to={"/"}>
-                  <Nav.Link>Home</Nav.Link>
+                  <Nav.Link
+                    className={
+                      window.location.pathname === "/"
+                        ? "drugbug-nav-link drugbug-nav-link--active"
+                        : "drugbug-nav-link "
+                    }
+                  >
+                    Home
+                  </Nav.Link>
                 </LinkContainer>
               </Nav.Item>
               <Nav.Item>
                 <LinkContainer to={"/medication"}>
-                  <Nav.Link>Add Medication</Nav.Link>
+                  <Nav.Link
+                    className={
+                      window.location.pathname === "/"
+                        ? "drugbug-nav-link"
+                        : "drugbug-nav-link drugbug-nav-link--active"
+                    }
+                  >
+                    Add Medication
+                  </Nav.Link>
                 </LinkContainer>
               </Nav.Item>
             </Nav>
