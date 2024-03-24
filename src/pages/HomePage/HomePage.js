@@ -70,7 +70,6 @@ const HomePage = ({ user, setUser }) => {
       </Container>
     );
   }
-  // }, []);
 
   return (
     <Container>
