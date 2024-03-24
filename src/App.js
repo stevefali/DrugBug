@@ -81,15 +81,32 @@ function App() {
             }
             if (perm === "granted") {
               worker.pushManager.getSubscription().then((sub) => {
-                const subAsJson = sub.toJSON();
+                if (!sub) {
+                  const notificationApi = new NotificationAPI({
+                    clientId: process.env.REACT_APP_NOTIFICATIONAPI_CLIENT_ID,
+                    userId: user.id.toString(),
+                  });
+                  notificationApi.askForWebPushPermission();
+                  getAndSendSub(worker);
+                } else {
+                  getAndSendSub(worker);
+                }
+                // const subAsJson = sub.toJSON();
 
-                sendWebPushTokens(subAsJson);
+                // sendWebPushTokens(subAsJson);
               });
             }
           });
       });
     }
   }, [user]);
+
+  function getAndSendSub(worker) {
+    worker.pushManager.getSubscription().then((sub) => {
+      const subAsJson = sub.toJSON();
+      sendWebPushTokens(subAsJson);
+    });
+  }
 
   const handleLogout = () => {
     sessionStorage.removeItem("token");
