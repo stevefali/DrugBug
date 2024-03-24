@@ -39,8 +39,6 @@ function Header({ user, handleLogout, sendWebPushTokens }) {
     }
   };
 
-  console.log(window.location.pathname);
-
   const handleAccountClick = (event) => {
     event.preventDefault();
     navigate("/account");

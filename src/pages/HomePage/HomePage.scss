@@ -1,8 +1,13 @@
+@use "../../styles/partials/mixins" as *;
+
 .medications-list {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  //   justify-content: center;
   align-items: flex-start;
-  //   width: 100%;
+  justify-content: center;
+
+  @include tablet {
+    justify-content: flex-start;
+  }
 }
