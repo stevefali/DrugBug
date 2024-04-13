@@ -69,29 +69,7 @@ This app will be great for people who take multiple medications regularly and co
 
 ### Mockups
 
-### Home
 
-![](readme-images/home.jpg)
-
-### Add/edit Medications
-
-![](readme-images/add-edit-medication.jpg)
-
-### Login
-
-![](readme-images/login.jpg)
-
-### Register
-
-![](readme-images/register.jpg)
-
-
-
-
-
-### Header (visible on all pages)
-
-![](readme-images/header-all-pages.jpg)
 
 ### Data
 
@@ -290,21 +268,3 @@ The app will need to use auth for signup and login so the user's medication info
 				},
 				...
 ```
-### Info Lookup
-
-![](readme-images/info-lookup.jpg)
-
-### Create/edit Reminders
-
-![](readme-images/create-edit-reminder.jpg)
-
-### Doctor/Pharmacy Info
-
-![](readme-images/doctor-pharmacy-info.jpg)
-
-### Add/Edit Doctor/Pharmacy
-
-![](readme-images/add-edit-pharmacy.jpg)
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbNDcxMTE5Mjc0LC0yMTA3ODMzOTE5XX0=
--->
