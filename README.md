@@ -73,7 +73,7 @@ This app will be great for people who take multiple medications regularly and co
 
 ### Data
 
-![](readme-images/database-image.png)
+![](readme-images/drawSQL-image-export-2024-04-13.png)
 
 ### Endpoints
 
