@@ -81,15 +81,24 @@ function App() {
             }
             if (perm === "granted") {
               worker.pushManager.getSubscription().then((sub) => {
-                const subAsJson = sub.toJSON();
+                getAndSendSub(worker);
 
-                sendWebPushTokens(subAsJson);
+                // const subAsJson = sub.toJSON();
+
+                // sendWebPushTokens(subAsJson);
               });
             }
           });
       });
     }
   }, [user]);
+
+  function getAndSendSub(worker) {
+    worker.pushManager.getSubscription().then((sub) => {
+      const subAsJson = sub.toJSON();
+      sendWebPushTokens(subAsJson);
+    });
+  }
 
   const handleLogout = () => {
     sessionStorage.removeItem("token");
