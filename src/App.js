@@ -41,7 +41,7 @@ function App() {
   useEffect(() => {
     document.title = "DrugBug";
 
-    const token = sessionStorage.getItem("token");
+    const token = localStorage.getItem("token");
     if (!token) {
       setFailedAuth(true);
     }
@@ -53,7 +53,7 @@ function App() {
 
   const sendWebPushTokens = async (pushSub) => {
     try {
-      const token = sessionStorage.getItem("token");
+      const token = localStorage.getItem("token");
 
       await axios.post(postWebPushEndpoint(), pushSub, {
         headers: {
@@ -67,7 +67,6 @@ function App() {
 
   useEffect(() => {
     if (user) {
-      console.log("user useEffect in App.js");
       navigator.serviceWorker.ready.then((worker) => {
         worker.pushManager
           .permissionState({ userVisibleOnly: true })
@@ -101,7 +100,7 @@ function App() {
   }
 
   const handleLogout = () => {
-    sessionStorage.removeItem("token");
+    localStorage.removeItem("token");
     setUser(null);
     setFailedAuth(true);
   };

@@ -1,13 +1,10 @@
 # DrugBug
 
-
 [DrugBug](https://drugbug.netlify.app/) is a full-stack web app for tracking medications.
 I made it using React, JavaScript, Node.js, Express,js, Knex, and Bootstrap. It includes a front end that allows users to add, view, and edit medications and doses to receive email and web push notifications when it is time for a dose or to order a refill.
 
 The server, where all the magic happens, grabs the current data in the MySQL database that I created, schedules notifications using cron syntax and triggers them in real time in worker threads that build notifications and then trigger them on the NotificationApi.
 I had a lot of fun building this project, and I am particularly proud of having taught myself how to send web push notifications.
-
-
 
 ## Implementation
 
@@ -30,20 +27,15 @@ I had a lot of fun building this project, and I am particularly proud of having 
 
 ## Installation Instructions
 
-To install the React app (this repo) you need to simply run ``` npm i ``` in the command line to install the node modules.
+To install the React app (this repo) you need to simply run `npm i` in the command line to install the node modules.
 
 To install the server ([DrugBugServer](https://github.com/stevefali/DrugBugServer)) you need to:
-- Run ``` npm i ``` in the command line to install the node modules.
+
+- Run `npm i` in the command line to install the node modules.
 - Make a mysql database
-	- ``` npm run migrate ```
- 	- ``` npm run seed ```
-    
+  - `npm run migrate`
+  - `npm run seed`
 
 ### Database Structure
 
 ![](readme-images/drawSQL-image-export-2024-04-13.png)
-
-
-
-
-

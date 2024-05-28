@@ -78,7 +78,7 @@ const DoseForm = ({
   };
 
   const addDose = async () => {
-    const token = sessionStorage.getItem("token");
+    const token = localStorage.getItem("token");
     try {
       const data = {
         medications: [],

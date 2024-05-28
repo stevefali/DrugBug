@@ -41,7 +41,7 @@ const DoseAddPage = () => {
   };
 
   useEffect(() => {
-    token = sessionStorage.getItem("token");
+    token = localStorage.getItem("token");
     if (!token) {
       setFailedAuth(true);
     }
