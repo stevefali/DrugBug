@@ -30,7 +30,7 @@ const LoginPage = () => {
         password: password.value,
       });
 
-      sessionStorage.setItem("token", response.data.token);
+      localStorage.setItem("token", response.data.token);
       navigate("/");
     } catch (error) {
       setError(`Error Loggin In`);
