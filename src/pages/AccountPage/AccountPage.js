@@ -86,7 +86,7 @@ const AccountPage = ({ handleLogout, currentUser, setCurrentUser }) => {
   };
 
   const editAccount = async (updatedUser) => {
-    const token = sessionStorage.getItem("token");
+    const token = localStorage.getItem("token");
     try {
       await axios.put(putEditUserEndpoint(), updatedUser, {
         headers: {
@@ -101,7 +101,7 @@ const AccountPage = ({ handleLogout, currentUser, setCurrentUser }) => {
   };
 
   const deleteAccount = async () => {
-    const token = sessionStorage.getItem("token");
+    const token = localStorage.getItem("token");
     try {
       await axios.delete(deleteUserEndpoint(), {
         headers: {

@@ -61,7 +61,7 @@ const AddEditPage = ({ isAdd }) => {
   };
 
   useEffect(() => {
-    token = sessionStorage.getItem("token");
+    token = localStorage.getItem("token");
     if (!token) {
       setFailedAuth(true);
     }
@@ -79,7 +79,7 @@ const AddEditPage = ({ isAdd }) => {
     amountUnit
   ) => {
     try {
-      token = sessionStorage.getItem("token");
+      token = localStorage.getItem("token");
       const data = {
         medications: [
           {
@@ -118,7 +118,7 @@ const AddEditPage = ({ isAdd }) => {
     amountUnit
   ) => {
     try {
-      token = sessionStorage.getItem("token");
+      token = localStorage.getItem("token");
       const editMedResponse = await axios.put(
         putModifyMedicationEndpoint(medId),
         {
@@ -145,7 +145,7 @@ const AddEditPage = ({ isAdd }) => {
 
   const deleteMedication = async () => {
     console.log("delete");
-    token = sessionStorage.getItem("token");
+    token = localStorage.getItem("token");
     try {
       const response = await axios.delete(deleteMedicationEndpoint(medId), {
         headers: {
