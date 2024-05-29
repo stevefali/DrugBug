@@ -112,7 +112,7 @@ const MedicineCard = ({ medication }) => {
               <div className="amount-remaining">
                 <div>{`${medication.amount_remaining} ${medication.amount_unit}`}</div>
               </div>
-              <div>{refillBy}</div>
+              <div className="refill-date">{refillBy}</div>
               <div
                 className={`reminder reminder--${medication.refill_reminder}`}
               >

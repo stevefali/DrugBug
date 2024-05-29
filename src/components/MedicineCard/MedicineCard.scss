@@ -35,10 +35,15 @@
     margin: 0;
     font-weight: 600;
   }
+
   &-description {
     text-transform: capitalize;
     margin: 0;
     font-weight: 600;
+  }
+
+  &-date {
+    color: dodgerblue;
   }
 }
 
@@ -52,6 +57,10 @@
   &--0 {
     color: #ff7851;
   }
+}
+
+.refill-date {
+  @extend .dose-date;
 }
 
 .amount-remaining {
