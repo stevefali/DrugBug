@@ -140,7 +140,7 @@ function MedicineForm({
         <Form.Label>Reminder Date</Form.Label>
         <Form.Control
           className="medication-form__field"
-          type="date"
+          type="datetime-local"
           placeholder="Date"
           name="refill_reminder_date"
           value={fieldValues.refill_reminder_date}

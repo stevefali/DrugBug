@@ -144,7 +144,6 @@ const AddEditPage = ({ isAdd }) => {
   };
 
   const deleteMedication = async () => {
-    console.log("delete");
     token = localStorage.getItem("token");
     try {
       const response = await axios.delete(deleteMedicationEndpoint(medId), {
