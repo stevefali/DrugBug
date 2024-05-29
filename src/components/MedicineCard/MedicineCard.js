@@ -14,10 +14,14 @@ const MedicineCard = ({ medication }) => {
     event.preventDefault();
     navigate(`/medication/${medication.id}`);
   };
-  //
+
   let interval;
   let cronDescription;
-  const refillBy = new Date(medication.refill_reminder_date).toDateString();
+  const refillBy = new Date(medication.refill_reminder_date).toLocaleString(
+    "en-us",
+    { dateStyle: "medium" }
+  );
+
   return (
     <Card className="medicine-card border-success bg-light mb-3">
       <Card.Header className="medicine-card__header">
@@ -53,7 +57,7 @@ const MedicineCard = ({ medication }) => {
                   )}
                   {dose.onetime_time && (
                     <p className="dose-description">
-                      {Date(dose.onetime_time).match(/^([^:]+:[^:]\d)/g)}
+                      {formatTime(dose.onetime_time)}
                     </p>
                   )}
                 </div>
@@ -73,7 +77,10 @@ const MedicineCard = ({ medication }) => {
                       <>
                         <div>{interval.next().toDate().toDateString()}</div>
                         <div>
-                          {interval.next().toDate().toLocaleTimeString()}
+                          {interval
+                            .next()
+                            .toDate()
+                            .toLocaleString("en-us", { timeStyle: "short" })}
                         </div>
                       </>
                     )}
@@ -91,7 +98,7 @@ const MedicineCard = ({ medication }) => {
               direction="horizontal"
               className="d-flex justify-content-between"
             >
-              <div className="dose-label">Amount Remaining</div>
+              <div className="dose-label">Total Amount</div>
               <div className="dose-label">Refill By</div>
               <div className="dose-label">Notification</div>
             </Stack>
@@ -105,7 +112,7 @@ const MedicineCard = ({ medication }) => {
               <div className="amount-remaining">
                 <div>{`${medication.amount_remaining} ${medication.amount_unit}`}</div>
               </div>
-              <div>{refillBy}</div>
+              <div className="refill-date">{refillBy}</div>
               <div
                 className={`reminder reminder--${medication.refill_reminder}`}
               >
@@ -120,3 +127,10 @@ const MedicineCard = ({ medication }) => {
 };
 
 export default MedicineCard;
+
+function formatTime(mills) {
+  return new Date(mills).toLocaleString("en-US", {
+    dateStyle: "medium",
+    timeStyle: "short",
+  });
+}
