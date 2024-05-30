@@ -40,6 +40,7 @@ const HomePage = ({ user, setUser }) => {
       setUserMedications(medResponse.data.medications);
     } catch (error) {
       console.log(error);
+      setFailedAuth(true);
     }
   };
 
