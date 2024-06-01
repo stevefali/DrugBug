@@ -7,14 +7,7 @@ import parser from "cron-parser";
 import { postAddMedicationEndpoint } from "../../utils/networkUtils";
 import axios from "axios";
 
-const DoseForm = ({
-  medication_id,
-  // cron,
-  // oneTimeTime,
-  // amount,
-  // doseReminder,
-  // amountUnit,
-}) => {
+const DoseForm = ({ medication_id }) => {
   const [isDoseReminder, setIsDoseReminder] = useState(false);
   const [isOneTime, setIsOneTime] = useState(false);
   const [error, setError] = useState("");

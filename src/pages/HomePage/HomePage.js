@@ -7,13 +7,10 @@ import { useEffect, useState } from "react";
 import { getUserMedicationsEndpoint } from "../../utils/networkUtils";
 import { Stack } from "react-bootstrap";
 import MedicineCard from "../../components/MedicineCard/MedicineCard";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getCurrentUserEndpoint } from "../../utils/networkUtils";
 
 const HomePage = ({ user, setUser }) => {
-  const navigate = useNavigate();
-
-  // const [user, setUser] = useState(null);
   const [userMedications, setUserMedications] = useState([]);
   const [failedAuth, setFailedAuth] = useState(false);
 
@@ -60,7 +57,6 @@ const HomePage = ({ user, setUser }) => {
   };
 
   if (failedAuth) {
-    // navigate("/login");
     return (
       <Container>
         <h1>Welcome to DrugBug</h1>

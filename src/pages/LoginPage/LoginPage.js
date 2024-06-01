@@ -1,7 +1,7 @@
 import "./LoginPage.scss";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { postLoginEndpoint } from "../../utils/networkUtils";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
@@ -37,12 +37,6 @@ const LoginPage = () => {
       console.log(error);
     }
   };
-
-  // useEffect(() => {
-  //   if (!failedAuth) {
-  //     navigate("/");
-  //   }
-  // }, []);
 
   return (
     <Container>

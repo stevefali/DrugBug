@@ -1,9 +1,4 @@
 .medication-form {
-  // display: flex;
-  // flex-direction: row;
-  // align-items: center;
-  // flex-wrap: wrap;
-  // justify-content: space-between;
   &__submit {
     margin-top: 1rem;
     &--extra {
@@ -18,9 +13,6 @@
       border-color: #ced4da;
     }
   }
-  //   &__submit {
-  //     height: fit-content;
-  //   }
 }
 
 .amount-container {

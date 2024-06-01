@@ -52,16 +52,7 @@ function Header({ user, handleLogout, sendWebPushTokens }) {
         data-bs-theme="dark"
       >
         <Container>
-          <Navbar.Brand href="/">
-            {/* <img
-              alt=""
-              src={logo}
-              width="30"
-              height="30"
-              className="d-inline-block align-top "
-            />{" "} */}
-            DrugBug
-          </Navbar.Brand>
+          <Navbar.Brand href="/">DrugBug</Navbar.Brand>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -113,7 +104,6 @@ function Header({ user, handleLogout, sendWebPushTokens }) {
                 className="settings-button"
                 onClick={onSettingsClick}
               />
-              {/* <NotificationAPIContainer userId={user.id} /> */}
             </div>
           ) : (
             <div className="login-holder">
