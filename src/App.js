@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.scss";
 import "bootswatch/dist/minty/bootstrap.min.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -9,7 +8,6 @@ import Header from "./components/Header/Header";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import {
   getCurrentUserEndpoint,
-  getUserMedicationsEndpoint,
   postWebPushEndpoint,
 } from "./utils/networkUtils";
 import axios from "axios";
@@ -22,7 +20,6 @@ import AccountPage from "./pages/AccountPage/AccountPage";
 
 function App() {
   const [user, setUser] = useState(null);
-  const [userMedications, setUserMedications] = useState([]);
   const [failedAuth, setFailedAuth] = useState(false);
 
   const fetchAuthorizedUser = async (token) => {
@@ -81,10 +78,6 @@ function App() {
             if (perm === "granted") {
               worker.pushManager.getSubscription().then((sub) => {
                 getAndSendSub(worker);
-
-                // const subAsJson = sub.toJSON();
-
-                // sendWebPushTokens(subAsJson);
               });
             }
           });

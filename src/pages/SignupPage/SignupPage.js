@@ -38,7 +38,6 @@ const SignupPage = () => {
         setSuccess(true);
         formRef.current.reset();
         setError("");
-        // navigate("/");
       }
     } catch (error) {
       setError(`Error signing up`);
@@ -49,7 +48,6 @@ const SignupPage = () => {
   return (
     <Container>
       <h1>Sign Up</h1>
-      {/* <Form ref={formRef}> */}
       <Form onSubmit={handleSubmit} ref={formRef}>
         <Form.Group className="mb-3">
           <Form.Label>First Name</Form.Label>

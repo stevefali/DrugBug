@@ -7,11 +7,10 @@ import {
 } from "../../utils/networkUtils";
 import { useState, useEffect } from "react";
 import DoseForm from "../../components/DoseForm/DoseForm";
-import { useLocation, useParams } from "react-router";
+import { useParams } from "react-router";
 
 const DoseAddPage = () => {
   const [user, setUser] = useState(null);
-  const [error, setError] = useState("");
   const [failedAuth, setFailedAuth] = useState(false);
 
   const { medicationId } = useParams();

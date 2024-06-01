@@ -9,7 +9,6 @@
   align-items: flex-start;
   flex-wrap: wrap;
   justify-content: space-between;
-  // min-height: 15rem;
   &__field {
     border-color: #ced4da;
     &--units {
@@ -23,7 +22,6 @@
 }
 
 .one-time {
-  // margin-bottom: 0;
   &__input {
     margin-left: 1rem;
   }
