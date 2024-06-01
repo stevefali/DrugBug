@@ -7,6 +7,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import NotificationAPI from "notificationapi-js-client-sdk";
 import { ReactComponent as SettingsIcon } from "../../settings.svg";
+import NotificationAPIContainer from "../../memo/NotificationApiContainer";
 
 function Header({ user, handleLogout, sendWebPushTokens }) {
   const navigate = useNavigate();
