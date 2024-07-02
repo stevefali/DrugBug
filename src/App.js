@@ -111,9 +111,11 @@ function App() {
             })
             .then((freshSub) => {
               sub = freshSub;
+              console.log("Fresh sub: ", sub);
             });
         });
       }
+      console.log("sub: ", sub);
       const subAsJson = sub.toJSON();
       sendWebPushTokens(subAsJson);
     });
