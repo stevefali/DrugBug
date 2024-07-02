@@ -6,6 +6,7 @@ import {
   getUserMedicationsEndpoint,
 } from "../../utils/networkUtils";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import DoseForm from "../../components/DoseForm/DoseForm";
 import { useParams } from "react-router";
 
@@ -47,6 +48,18 @@ const DoseAddPage = () => {
 
     fetchAuthorizedUser(token);
   }, []);
+
+  if (failedAuth) {
+    return (
+      <Container>
+        <h1>Welcome to DrugBug</h1>
+        <p>Please Login to get started.</p>
+        <p>
+          <Link to="/login">Log in</Link>
+        </p>
+      </Container>
+    );
+  }
 
   return (
     <Container>

@@ -1,4 +1,5 @@
 import Container from "react-bootstrap/Container";
+import { Link } from "react-router-dom";
 import MedicineForm from "../../components/MedicineForm/MedicineForm";
 
 import "./AddEditPage.scss";
@@ -157,6 +158,18 @@ const AddEditPage = ({ isAdd }) => {
       console.log(error);
     }
   };
+
+  if (failedAuth) {
+    return (
+      <Container>
+        <h1>Welcome to DrugBug</h1>
+        <p>Please Login to get started.</p>
+        <p>
+          <Link to="/login">Log in</Link>
+        </p>
+      </Container>
+    );
+  }
 
   if (user === null) {
     return <p>Loading</p>;
