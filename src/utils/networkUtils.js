@@ -26,3 +26,5 @@ export const postWebPushEndpoint = () => `${BASE}/user/webpush`;
 export const deleteUserEndpoint = () => `${BASE}/user/delete`;
 
 export const putEditUserEndpoint = () => `${BASE}/user/edit`;
+
+export const getVapKeyEndpoint = () => `${BASE}/user/vap`;

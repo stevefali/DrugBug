@@ -8,6 +8,7 @@ import Header from "./components/Header/Header";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import {
   getCurrentUserEndpoint,
+  getVapKeyEndpoint,
   postWebPushEndpoint,
 } from "./utils/networkUtils";
 import axios from "axios";
@@ -76,9 +77,7 @@ function App() {
               notificationApi.askForWebPushPermission();
             }
             if (perm === "granted") {
-              worker.pushManager.getSubscription().then((sub) => {
-                getAndSendSub(worker);
-              });
+              getAndSendSub(worker);
             }
           });
       });
@@ -87,9 +86,35 @@ function App() {
 
   function getAndSendSub(worker) {
     worker.pushManager.getSubscription().then((sub) => {
+      if (!sub) {
+        getVapKey().then((key) => {
+          worker.pushManager
+            .subscribe({
+              userVisibleOnly: true,
+              applicationServerKey: key,
+            })
+            .then((freshSub) => {
+              sub = freshSub;
+            });
+        });
+      }
       const subAsJson = sub.toJSON();
       sendWebPushTokens(subAsJson);
     });
+  }
+
+  async function getVapKey() {
+    try {
+      const token = localStorage.getItem("token");
+      const vKey = await axios.get(getVapKeyEndpoint(), {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return vKey.data.vkey;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const handleLogout = () => {
