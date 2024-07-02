@@ -77,22 +77,6 @@ function App() {
               notificationApi.askForWebPushPermission();
             }
             if (perm === "granted") {
-              // worker.pushManager.getSubscription().then((sub) => {
-              //   console.log(sub);
-              //   if (sub) {
-              //     getAndSendSub(worker);
-              //   } else {
-              //     getVapKey().then((key) => {
-              //       console.log("Vapkey = ", key);
-              //       worker.pushManager.subscribe({
-              //         userVisibleOnly: true,
-              //         applicationServerKey: key,
-              //       }).then((freshSub) => {
-              //         getAndSendSub(worker);
-              //       });
-              //     });
-              //   }
-              // });
               getAndSendSub(worker);
             }
           });
@@ -111,11 +95,9 @@ function App() {
             })
             .then((freshSub) => {
               sub = freshSub;
-              console.log("Fresh sub: ", sub);
             });
         });
       }
-      console.log("sub: ", sub);
       const subAsJson = sub.toJSON();
       sendWebPushTokens(subAsJson);
     });
