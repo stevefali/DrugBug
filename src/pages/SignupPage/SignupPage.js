@@ -82,7 +82,7 @@ const SignupPage = () => {
         {success && <div className="signup__message">Signed up!</div>}
         {error && <div className="signup__message">{error}</div>}
       </Form>
-      <p>
+      <p className="have-account">
         Have an account? <Link to="/login">Log in</Link>
       </p>
     </Container>
