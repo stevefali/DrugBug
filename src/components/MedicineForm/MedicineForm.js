@@ -161,9 +161,14 @@ function MedicineForm({
 
       <div className="medication-form__submit">
         <DrugBugButton text={"Submit"} handleClick={handleSubmit} />
+        <DrugBugButton
+          text={"Cancel"}
+          handleClick={() => navigate("/")}
+          variant="outline-secondary"
+        />
       </div>
       {isAdd || (
-        <div className="medication-form__submit medication-form__submit--extra">
+        <div className="medication-form__submit">
           <Button variant="secondary" onClick={handleDelete} className="delete">
             Delete
           </Button>
