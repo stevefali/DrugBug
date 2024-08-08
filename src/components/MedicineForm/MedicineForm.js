@@ -5,7 +5,6 @@ import DrugBugButton from "../DrugBugButton/DrugBugButton";
 
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "react-bootstrap/Button";
 
 function MedicineForm({
   medicine_name,
@@ -161,12 +160,21 @@ function MedicineForm({
 
       <div className="medication-form__submit">
         <DrugBugButton text={"Submit"} handleClick={handleSubmit} />
+        <DrugBugButton
+          text={"Cancel"}
+          handleClick={() => navigate("/")}
+          variant="outline-secondary"
+        />
       </div>
       {isAdd || (
-        <div className="medication-form__submit medication-form__submit--extra">
-          <Button variant="secondary" onClick={handleDelete} className="delete">
-            Delete
-          </Button>
+        <div className="medication-form__submit">
+          <DrugBugButton
+            text={"Delete"}
+            variant="secondary"
+            handleClick={handleDelete}
+            className="delete"
+          />
+
           <DrugBugButton
             text={"Add Dose"}
             className="add-dose"

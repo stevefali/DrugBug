@@ -206,6 +206,8 @@ const AddEditPage = ({ isAdd }) => {
       amount_unit,
     } = userMedication;
 
+    const tzOffset = new Date().getTimezoneOffset() * 60000;
+
     return (
       <Container>
         <h1>Edit Medication</h1>
@@ -214,9 +216,9 @@ const AddEditPage = ({ isAdd }) => {
           amount_remaining={amount_remaining}
           user_id={user_id}
           refill_reminder={refill_reminder}
-          refill_reminder_date={new Date(refill_reminder_date)
+          refill_reminder_date={new Date(refill_reminder_date - tzOffset)
             .toISOString()
-            .substring(0, 10)}
+            .substring(0, 16)}
           refilled_on={new Date(refilled_on).toISOString().substring(0, 10)}
           amount_unit={amount_unit}
           submitResult={editMedication}
