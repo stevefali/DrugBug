@@ -63,15 +63,16 @@ const HomePage = ({ user, setUser }) => {
   };
 
   if (failedAuth) {
-    return (
-      <Container>
-        <h1>Welcome to DrugBug</h1>
-        <p>Please Login to get started.</p>
-        <p>
-          <Link to="/login">Log in</Link>
-        </p>
-      </Container>
-    );
+    // return (
+    //   <Container>
+    //     <h1>Welcome to DrugBug</h1>
+    //     <p>Please Login to get started.</p>
+    //     <p>
+    //       <Link to="/login">Log in</Link>
+    //     </p>
+    //   </Container>
+    // );
+    navigate("/login");
   }
 
   if (isResponseBack && userMedications.length < 1) {
