@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 const HomePage = ({ user, setUser }) => {
   const [userMedications, setUserMedications] = useState([]);
   const [failedAuth, setFailedAuth] = useState(false);
+  const [isResponseBack, setIsResponseBack] = useState(false);
 
   const navigate = useNavigate();
 
@@ -39,6 +40,7 @@ const HomePage = ({ user, setUser }) => {
       );
 
       setUserMedications(medResponse.data.medications);
+      setIsResponseBack(true);
     } catch (error) {
       console.log(error);
       setFailedAuth(true);
@@ -72,7 +74,7 @@ const HomePage = ({ user, setUser }) => {
     );
   }
 
-  if (userMedications.length < 1) {
+  if (isResponseBack && userMedications.length < 1) {
     return (
       <Container>
         <h1>Let's Get Started!</h1>
