@@ -40,12 +40,18 @@ const LoginPage = () => {
 
   return (
     <Container>
+      <h1>Welcome to Drugbug!</h1>
+      <h3 className="welcome-description">
+        With DrugBug you can track all of your medications and doses in one
+        place and set reminders on your computer or mobile device.
+      </h3>
+      <h4>Please login to get started.</h4>
       <Form onSubmit={handleSubmit} ref={formRef}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control type="email" name="email" placeholder="Enter email" />
           <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
+            We'll never share your information with anyone else.
           </Form.Text>
         </Form.Group>
 
@@ -61,7 +67,7 @@ const LoginPage = () => {
         <DrugBugButton text={"Log In"} type="submit" />
         {error && <div className="signup__message">{error}</div>}
       </Form>
-      <p>
+      <p className="no-account">
         Don't have an account? <Link to="/signup">Sign up</Link>{" "}
       </p>
     </Container>

@@ -74,9 +74,9 @@ function Header({ user, handleLogout, sendWebPushTokens }) {
                 <LinkContainer to={"/medication"}>
                   <Nav.Link
                     className={
-                      window.location.pathname === "/"
-                        ? "drugbug-nav-link"
-                        : "drugbug-nav-link drugbug-nav-link--active"
+                      window.location.pathname === "/medication"
+                        ? "drugbug-nav-link drugbug-nav-link--active"
+                        : "drugbug-nav-link"
                     }
                   >
                     Add Medication
