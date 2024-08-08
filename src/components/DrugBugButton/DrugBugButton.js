@@ -2,11 +2,11 @@ import Button from "react-bootstrap/Button";
 
 import "./DrugBugButton.scss";
 
-const DrugBugButton = ({ text, handleClick }) => {
+const DrugBugButton = ({ text, handleClick, variant = "success" }) => {
   return (
     <Button
       onClick={handleClick}
-      variant="success"
+      variant={variant}
       type="submit"
       className="drugbug-button"
     >

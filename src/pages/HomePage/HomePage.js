@@ -9,10 +9,14 @@ import { Stack } from "react-bootstrap";
 import MedicineCard from "../../components/MedicineCard/MedicineCard";
 import { Link } from "react-router-dom";
 import { getCurrentUserEndpoint } from "../../utils/networkUtils";
+import DrugBugButton from "../../components/DrugBugButton/DrugBugButton";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = ({ user, setUser }) => {
   const [userMedications, setUserMedications] = useState([]);
   const [failedAuth, setFailedAuth] = useState(false);
+
+  const navigate = useNavigate();
 
   const fetchAuthorizedUser = async (token) => {
     try {
@@ -68,17 +72,32 @@ const HomePage = ({ user, setUser }) => {
     );
   }
 
-  return (
-    <Container>
-      <h1>My Medications</h1>
-
-      <Stack className="medications-list" gap={3}>
-        {userMedications.map((medication) => {
-          return <MedicineCard medication={medication} key={medication.id} />;
-        })}
-      </Stack>
-    </Container>
-  );
+  if (userMedications.length < 1) {
+    return (
+      <Container>
+        <h1>Let's Get Started!</h1>
+        <h2>
+          It looks like you haven't added any medications yet.{" "}
+          <Link to="/medication">Click here to add one.</Link>
+        </h2>
+      </Container>
+    );
+  } else {
+    return (
+      <Container>
+        <h1>My Medications</h1>
+        <Stack className="medications-list" gap={3}>
+          {userMedications.map((medication) => {
+            return <MedicineCard medication={medication} key={medication.id} />;
+          })}
+        </Stack>
+        <DrugBugButton
+          text={"New Medication"}
+          handleClick={() => navigate("/medication")}
+        ></DrugBugButton>
+      </Container>
+    );
+  }
 };
 
 export default HomePage;
