@@ -216,7 +216,7 @@ const AddEditPage = ({ isAdd }) => {
           refill_reminder={refill_reminder}
           refill_reminder_date={new Date(refill_reminder_date)
             .toISOString()
-            .substring(0, 10)}
+            .substring(0, 16)}
           refilled_on={new Date(refilled_on).toISOString().substring(0, 10)}
           amount_unit={amount_unit}
           submitResult={editMedication}
