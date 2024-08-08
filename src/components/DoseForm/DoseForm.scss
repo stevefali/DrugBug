@@ -9,6 +9,7 @@
   align-items: flex-start;
   flex-wrap: wrap;
   justify-content: space-between;
+
   &__field {
     border-color: #ced4da;
     &--units {
@@ -18,6 +19,11 @@
     &__check {
       border-color: #ced4da;
     }
+  }
+
+  &__submit {
+    display: flex;
+    gap: 1rem;
   }
 }
 

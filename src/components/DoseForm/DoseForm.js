@@ -225,7 +225,14 @@ const DoseForm = ({ medication_id }) => {
           />
         </Form.Group>
 
-        <DrugBugButton text={"Submit"} handleClick={handleSubmit} />
+        <div className="dose-form__submit">
+          <DrugBugButton text={"Submit"} handleClick={handleSubmit} />
+          <DrugBugButton
+            text={"Cancel"}
+            handleClick={() => navigate("/")}
+            variant="outline-secondary"
+          />
+        </div>
       </Form>
       {error && <p>{error}</p>}
     </main>
