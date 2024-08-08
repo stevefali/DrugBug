@@ -2,13 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import "./AccountPage.scss";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import {
   deleteUserEndpoint,
   putEditUserEndpoint,
 } from "../../utils/networkUtils";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import DrugBugButton from "../../components/DrugBugButton/DrugBugButton";
 
 const AccountPage = ({ handleLogout, currentUser, setCurrentUser }) => {
   const [confirm, setConfirm] = useState(false);
@@ -133,9 +133,12 @@ const AccountPage = ({ handleLogout, currentUser, setCurrentUser }) => {
           <h5 className="account-info__item">{user.email}</h5>
         </section>
         <div className="account-edit">
-          <Button variant="success" onClick={handleEdit} disabled={isEdit}>
-            Edit Account
-          </Button>
+          <DrugBugButton
+            text={"Edit Account"}
+            variant="success"
+            handleClick={handleEdit}
+            disabled={isEdit}
+          />
           {isEdit && (
             <Form className="account-edit__form" ref={formRef}>
               <div className="account-edit__row">
@@ -175,24 +178,27 @@ const AccountPage = ({ handleLogout, currentUser, setCurrentUser }) => {
                 </Form.Group>
               </div>
               <div className="account-edit__buttons">
-                <Button variant="success" onClick={handleSubmitForm}>
-                  Submit
-                </Button>
-                <Button
+                <DrugBugButton
+                  text={"Submit"}
+                  variant="success"
+                  handleClick={handleSubmitForm}
+                />
+                <DrugBugButton
+                  text={"Cancel"}
                   variant="outline-secondary"
-                  className="account-edit__buttons--cancel"
-                  onClick={handleCancelEdit}
-                >
-                  Cancel
-                </Button>
+                  handleClick={handleCancelEdit}
+                />
               </div>
             </Form>
           )}
         </div>
         <div className="account-delete">
-          <Button variant="secondary" onClick={handleDelete} disabled={confirm}>
-            Delete Account
-          </Button>
+          <DrugBugButton
+            text={"Delete Account"}
+            variant="secondary"
+            handleClick={handleDelete}
+            disabled={confirm}
+          />
         </div>
         {confirm && (
           <div className="account-delete__confirm">
@@ -203,16 +209,16 @@ const AccountPage = ({ handleLogout, currentUser, setCurrentUser }) => {
               This action can not be undone!
             </p>
             <div className="account-delete__confirm__buttons">
-              <Button
+              <DrugBugButton
+                text={"Cancel"}
                 variant="outline-secondary"
-                className="account-delete__confirm__buttons--cancel"
-                onClick={handleCancelConfirm}
-              >
-                Cancel
-              </Button>
-              <Button variant="secondary" onClick={handleConfirmed}>
-                Confirm Delete
-              </Button>
+                handleClick={handleCancelConfirm}
+              />
+              <DrugBugButton
+                text={"Confirm Delete"}
+                variant="secondary"
+                handleClick={handleConfirmed}
+              />
             </div>
           </div>
         )}
