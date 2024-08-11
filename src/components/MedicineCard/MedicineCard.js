@@ -17,10 +17,12 @@ const MedicineCard = ({ medication }) => {
 
   let interval;
   let cronDescription;
-  const refillBy = new Date(medication.refill_reminder_date).toLocaleString(
-    "en-us",
-    { dateStyle: "medium" }
-  );
+
+  const refillBy = medication.refill_reminder_date
+    ? new Date(medication.refill_reminder_date).toLocaleString("en-us", {
+        dateStyle: "medium",
+      })
+    : "No Date Set";
 
   return (
     <Card className="medicine-card border-success bg-light mb-3">
