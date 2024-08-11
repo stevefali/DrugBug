@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const NotFoundPage = () => {
   const navigate = useNavigate();
   return (
-    <main>
+    <main className="drugbug__page">
       <Container className="not-found">
         <h1>Page Not Found</h1>
         <Button

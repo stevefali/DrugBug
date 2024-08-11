@@ -125,7 +125,7 @@ const AccountPage = ({ handleLogout, currentUser, setCurrentUser }) => {
   }
 
   return (
-    <main>
+    <main className="drugbug__page">
       <Container>
         <h1>My Account</h1>
         <section className="account-info">

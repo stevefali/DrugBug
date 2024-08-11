@@ -6,7 +6,7 @@ import {
   getUserMedicationsEndpoint,
 } from "../../utils/networkUtils";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import DoseForm from "../../components/DoseForm/DoseForm";
 import { useParams } from "react-router";
 
@@ -15,6 +15,8 @@ const DoseAddPage = () => {
   const [failedAuth, setFailedAuth] = useState(false);
 
   const { medicationId } = useParams();
+
+  const navigate = useNavigate();
 
   let token = null;
 
@@ -50,21 +52,15 @@ const DoseAddPage = () => {
   }, []);
 
   if (failedAuth) {
-    return (
-      <Container>
-        <h1>Welcome to DrugBug</h1>
-        <p>Please Login to get started.</p>
-        <p>
-          <Link to="/login">Log in</Link>
-        </p>
-      </Container>
-    );
+    navigate("/login");
   }
 
   return (
-    <Container>
-      <DoseForm medication_id={medicationId} />
-    </Container>
+    <main className="drugbug__page">
+      <Container>
+        <DoseForm medication_id={medicationId} />
+      </Container>
+    </main>
   );
 };
 

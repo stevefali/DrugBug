@@ -4,12 +4,14 @@ import axios from "axios";
 import { getCurrentUserEndpoint } from "../../utils/networkUtils";
 import { useState, useEffect } from "react";
 import DoseForm from "../../components/DoseForm/DoseForm";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router";
 
 const DoseEditPage = ({ isAdd }) => {
   const [user, setUser] = useState(null);
   const [failedAuth, setFailedAuth] = useState(false);
+
+  const navigate = useNavigate();
 
   let token = null;
 
@@ -36,21 +38,15 @@ const DoseEditPage = ({ isAdd }) => {
   }, []);
 
   if (failedAuth) {
-    return (
-      <Container>
-        <h1>Welcome to DrugBug</h1>
-        <p>Please Login to get started.</p>
-        <p>
-          <Link to="/login">Log in</Link>
-        </p>
-      </Container>
-    );
+    navigate("/login");
   }
 
   return (
-    <Container>
-      <DoseForm />
-    </Container>
+    <main className="drugbug__page">
+      <Container>
+        <DoseForm />
+      </Container>
+    </main>
   );
 };
 

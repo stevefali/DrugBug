@@ -46,46 +46,52 @@ const SignupPage = () => {
   };
 
   return (
-    <Container>
-      <h1>Sign Up</h1>
-      <Form onSubmit={handleSubmit} ref={formRef}>
-        <Form.Group className="mb-3">
-          <Form.Label>First Name</Form.Label>
-          <Form.Control
-            type="text"
-            name="first_name"
-            placeholder="First Name"
-          />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Last Name</Form.Label>
-          <Form.Control type="text" name="last_name" placeholder="Last Name" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" name="email" placeholder="Enter email" />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
-        </Form.Group>
+    <main className="drugbug__page">
+      <Container>
+        <h1>Sign Up</h1>
+        <Form onSubmit={handleSubmit} ref={formRef}>
+          <Form.Group className="mb-3">
+            <Form.Label>First Name</Form.Label>
+            <Form.Control
+              type="text"
+              name="first_name"
+              placeholder="First Name"
+            />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Last Name</Form.Label>
+            <Form.Control
+              type="text"
+              name="last_name"
+              placeholder="Last Name"
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control type="email" name="email" placeholder="Enter email" />
+            <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            name="password"
-            placeholder="Password"
-          />
-        </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              name="password"
+              placeholder="Password"
+            />
+          </Form.Group>
 
-        <DrugBugButton text={"Sign Up"} type="submit" />
-        {success && <div className="signup__message">Signed up!</div>}
-        {error && <div className="signup__message">{error}</div>}
-      </Form>
-      <p className="have-account">
-        Have an account? <Link to="/login">Log in</Link>
-      </p>
-    </Container>
+          <DrugBugButton text={"Sign Up"} type="submit" />
+          {success && <div className="signup__message">Signed up!</div>}
+          {error && <div className="signup__message">{error}</div>}
+        </Form>
+        <p className="have-account">
+          Have an account? <Link to="/login">Log in</Link>
+        </p>
+      </Container>
+    </main>
   );
 };
 

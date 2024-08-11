@@ -38,3 +38,14 @@
     transform: rotate(360deg);
   }
 }
+
+.drugbug {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  // background-color: red;
+
+  &__page {
+    flex-grow: 1;
+  }
+}
