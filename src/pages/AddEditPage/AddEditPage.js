@@ -163,7 +163,11 @@ const AddEditPage = ({ isAdd }) => {
   }
 
   if (user === null) {
-    return <p>Loading</p>;
+    return (
+      <main className="drugbug__page">
+        <p>Loading</p>
+      </main>
+    );
   }
 
   if (isAdd) {
