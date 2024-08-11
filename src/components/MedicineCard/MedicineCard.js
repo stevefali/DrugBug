@@ -43,10 +43,7 @@ const MedicineCard = ({ medication }) => {
             }
 
             return (
-              <ListGroup.Item
-                className="bg-light medicine-card__item"
-                key={dose.id}
-              >
+              <ListGroup.Item className="medicine-card__item" key={dose.id}>
                 <div
                   direction="horizontal"
                   className="d-flex justify-content-between medicine-card__dose"
