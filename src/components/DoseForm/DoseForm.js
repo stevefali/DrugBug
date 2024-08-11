@@ -101,7 +101,7 @@ const DoseForm = ({ medication_id }) => {
   };
 
   return (
-    <main>
+    <>
       <h1>Add New Dose</h1>
       <Form className="dose-form" ref={formRef}>
         <div className="frequency-container">
@@ -235,7 +235,7 @@ const DoseForm = ({ medication_id }) => {
         </div>
       </Form>
       {error && <p>{error}</p>}
-    </main>
+    </>
   );
 };
 
