@@ -18,6 +18,7 @@ import DoseEditPage from "./pages/DoseEditPage/DoseEditPage";
 import DoseAddPage from "./pages/DoseEditPage/DoseAddPage";
 import NotificationAPI from "notificationapi-js-client-sdk";
 import AccountPage from "./pages/AccountPage/AccountPage";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -124,37 +125,43 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
-      <Header
-        user={user}
-        handleLogout={handleLogout}
-        sendWebPushTokens={sendWebPushTokens}
-      />
-      <Routes>
-        <Route path="/" element={<HomePage user={user} setUser={setUser} />} />
-        <Route path="/medication" element={<AddEditPage isAdd={true} />} />
-        <Route
-          path="/medication/:medId"
-          element={<AddEditPage isAdd={false} />}
+    <div className="drugbug">
+      <BrowserRouter>
+        <Header
+          user={user}
+          handleLogout={handleLogout}
+          sendWebPushTokens={sendWebPushTokens}
         />
-        <Route path="/newdose/:medicationId" element={<DoseAddPage />} />
-        <Route path="/dose/:doseId" element={<DoseEditPage />} />
+        <Routes>
+          <Route
+            path="/"
+            element={<HomePage user={user} setUser={setUser} />}
+          />
+          <Route path="/medication" element={<AddEditPage isAdd={true} />} />
+          <Route
+            path="/medication/:medId"
+            element={<AddEditPage isAdd={false} />}
+          />
+          <Route path="/newdose/:medicationId" element={<DoseAddPage />} />
+          <Route path="/dose/:doseId" element={<DoseEditPage />} />
 
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/login" element={<LoginPage user={user} />} />
-        <Route
-          path="/account"
-          element={
-            <AccountPage
-              handleLogout={handleLogout}
-              currentUser={user}
-              setCurrentUser={fetchAuthorizedUser}
-            />
-          }
-        />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </BrowserRouter>
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/login" element={<LoginPage user={user} />} />
+          <Route
+            path="/account"
+            element={
+              <AccountPage
+                handleLogout={handleLogout}
+                currentUser={user}
+                setCurrentUser={fetchAuthorizedUser}
+              />
+            }
+          />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </div>
   );
 }
 

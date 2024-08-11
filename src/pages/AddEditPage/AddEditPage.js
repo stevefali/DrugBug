@@ -168,20 +168,22 @@ const AddEditPage = ({ isAdd }) => {
 
   if (isAdd) {
     return (
-      <Container>
-        <h1>Add New Medication</h1>
-        <MedicineForm
-          medicine_name={""}
-          amount_remaining={""}
-          user_id={user.id}
-          refill_reminder={0}
-          refill_reminder_date={""}
-          refilled_on={""}
-          amount_unit={""}
-          submitResult={addMedication}
-          isAdd={isAdd}
-        />
-      </Container>
+      <main className="drugbug__page">
+        <Container>
+          <h1>Add New Medication</h1>
+          <MedicineForm
+            medicine_name={""}
+            amount_remaining={""}
+            user_id={user.id}
+            refill_reminder={0}
+            refill_reminder_date={""}
+            refilled_on={""}
+            amount_unit={""}
+            submitResult={addMedication}
+            isAdd={isAdd}
+          />
+        </Container>
+      </main>
     );
   } else {
     if (!userMedication) {
@@ -200,25 +202,27 @@ const AddEditPage = ({ isAdd }) => {
     const tzOffset = new Date().getTimezoneOffset() * 60000;
 
     return (
-      <Container>
-        <h1>Edit Medication</h1>
-        <MedicineForm
-          medicine_name={medicine_name}
-          amount_remaining={amount_remaining}
-          user_id={user_id}
-          refill_reminder={refill_reminder}
-          refill_reminder_date={new Date(refill_reminder_date - tzOffset)
-            .toISOString()
-            .substring(0, 16)}
-          refilled_on={new Date(refilled_on).toISOString().substring(0, 10)}
-          amount_unit={amount_unit}
-          submitResult={editMedication}
-          doDelete={deleteMedication}
-          isAdd={isAdd}
-          medicationId={medId}
-        />
-        {error && <p>Error updating medication</p>}
-      </Container>
+      <main className="drugbug__page">
+        <Container>
+          <h1>Edit Medication</h1>
+          <MedicineForm
+            medicine_name={medicine_name}
+            amount_remaining={amount_remaining}
+            user_id={user_id}
+            refill_reminder={refill_reminder}
+            refill_reminder_date={new Date(refill_reminder_date - tzOffset)
+              .toISOString()
+              .substring(0, 16)}
+            refilled_on={new Date(refilled_on).toISOString().substring(0, 10)}
+            amount_unit={amount_unit}
+            submitResult={editMedication}
+            doDelete={deleteMedication}
+            isAdd={isAdd}
+            medicationId={medId}
+          />
+          {error && <p>Error updating medication</p>}
+        </Container>
+      </main>
     );
   }
 };

@@ -77,28 +77,34 @@ const HomePage = ({ user, setUser }) => {
 
   if (isResponseBack && userMedications.length < 1) {
     return (
-      <Container>
-        <h1>Let's Get Started!</h1>
-        <h2>
-          It looks like you haven't added any medications yet.{" "}
-          <Link to="/medication">Click here to add one.</Link>
-        </h2>
-      </Container>
+      <main className="drugbug__page">
+        <Container>
+          <h1>Let's Get Started!</h1>
+          <h2>
+            It looks like you haven't added any medications yet.{" "}
+            <Link to="/medication">Click here to add one.</Link>
+          </h2>
+        </Container>
+      </main>
     );
   } else {
     return (
-      <Container>
-        <h1>My Medications</h1>
-        <Stack className="medications-list" gap={3}>
-          {userMedications.map((medication) => {
-            return <MedicineCard medication={medication} key={medication.id} />;
-          })}
-        </Stack>
-        <DrugBugButton
-          text={"New Medication"}
-          handleClick={() => navigate("/medication")}
-        ></DrugBugButton>
-      </Container>
+      <main className="drugbug__page">
+        <Container>
+          <h1>My Medications</h1>
+          <Stack className="medications-list" gap={3}>
+            {userMedications.map((medication) => {
+              return (
+                <MedicineCard medication={medication} key={medication.id} />
+              );
+            })}
+          </Stack>
+          <DrugBugButton
+            text={"New Medication"}
+            handleClick={() => navigate("/medication")}
+          ></DrugBugButton>
+        </Container>
+      </main>
     );
   }
 };
