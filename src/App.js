@@ -19,6 +19,7 @@ import DoseAddPage from "./pages/DoseEditPage/DoseAddPage";
 import NotificationAPI from "notificationapi-js-client-sdk";
 import AccountPage from "./pages/AccountPage/AccountPage";
 import Footer from "./components/Footer/Footer";
+import InteractionsPage from "./pages/InteractionsPage/InteractionsPage";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -157,6 +158,7 @@ function App() {
               />
             }
           />
+          <Route path="/interactions" element={<InteractionsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <Footer />
