@@ -191,7 +191,11 @@ const AddEditPage = ({ isAdd }) => {
     );
   } else {
     if (!userMedication) {
-      return <p>Loading</p>;
+      return (
+        <main className="drugbug__page">
+          <p>Loading</p>
+        </main>
+      );
     }
     const {
       medicine_name,
