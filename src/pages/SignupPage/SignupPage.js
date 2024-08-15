@@ -1,7 +1,10 @@
 import Form from "react-bootstrap/Form";
 import "./SignupPage.scss";
 import DrugBugButton from "../../components/DrugBugButton/DrugBugButton";
-import { postRegisterEndpoint } from "../../utils/networkUtils";
+import {
+  postRegisterEndpoint,
+  postLoginEndpoint,
+} from "../../utils/networkUtils";
 import axios from "axios";
 import { useState, useRef } from "react";
 import { Container } from "react-bootstrap";
@@ -15,33 +18,53 @@ const SignupPage = () => {
 
   const navigate = useNavigate();
 
+  const loginOnSuccess = async (email, password) => {
+    try {
+      const loginResponse = await axios.post(postLoginEndpoint(), {
+        email: email,
+        password: password,
+      });
+
+      localStorage.setItem("token", loginResponse.data.token);
+      navigate("/");
+    } catch (error) {
+      setError(`Error Loggin In`);
+      console.log(error);
+    }
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const { first_name, last_name, email, password } = formRef.current;
     // Verify input
     const fields = [first_name, last_name, email, password];
+    let isNotAllFilled = false;
     for (const field of fields) {
       if (!field.value) {
-        alert("Please fill all fields");
+        isNotAllFilled = true;
       }
     }
-
-    try {
-      const response = await axios.post(postRegisterEndpoint(), {
-        first_name: first_name.value,
-        last_name: last_name.value,
-        email: email.value,
-        password: password.value,
-      });
-      if (response) {
-        setSuccess(true);
-        formRef.current.reset();
-        setError("");
+    if (isNotAllFilled) {
+      alert("Please fill all fields");
+    } else {
+      try {
+        const response = await axios.post(postRegisterEndpoint(), {
+          first_name: first_name.value,
+          last_name: last_name.value,
+          email: email.value,
+          password: password.value,
+        });
+        if (response) {
+          setSuccess(true);
+          loginOnSuccess(email.value, password.value);
+          formRef.current.reset();
+          setError("");
+        }
+      } catch (error) {
+        setError(`Error signing up`);
+        console.log(error);
       }
-    } catch (error) {
-      setError(`Error signing up`);
-      console.log(error);
     }
   };
 

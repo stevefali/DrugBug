@@ -147,7 +147,7 @@ function App() {
           <Route path="/dose/:doseId" element={<DoseEditPage />} />
 
           <Route path="/signup" element={<SignupPage />} />
-          <Route path="/login" element={<LoginPage user={user} />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route
             path="/account"
             element={
