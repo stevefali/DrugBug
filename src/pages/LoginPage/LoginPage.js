@@ -18,23 +18,27 @@ const LoginPage = () => {
     const { email, password } = formRef.current;
     // Verify input
     const fields = [email, password];
+    let isNotAllFilled = false;
     for (const field of fields) {
       if (!field.value) {
-        alert("Please fill all fields");
+        isNotAllFilled = true;
       }
     }
+    if (isNotAllFilled) {
+      alert("Please fill all fields");
+    } else {
+      try {
+        const response = await axios.post(postLoginEndpoint(), {
+          email: email.value,
+          password: password.value,
+        });
 
-    try {
-      const response = await axios.post(postLoginEndpoint(), {
-        email: email.value,
-        password: password.value,
-      });
-
-      localStorage.setItem("token", response.data.token);
-      navigate("/");
-    } catch (error) {
-      setError(`Error Loggin In`);
-      console.log(error);
+        localStorage.setItem("token", response.data.token);
+        navigate("/");
+      } catch (error) {
+        setError(`Error Loggin In`);
+        console.log(error);
+      }
     }
   };
 
