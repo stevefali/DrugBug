@@ -83,6 +83,19 @@ function Header({ user, handleLogout, sendWebPushTokens }) {
                   </Nav.Link>
                 </LinkContainer>
               </Nav.Item>
+              <Nav.Item>
+                <LinkContainer to={"/interactions"}>
+                  <Nav.Link
+                    className={
+                      window.location.pathname === "/interactions"
+                        ? "drugbug-nav-link drugbug-nav-link--active"
+                        : "drugbug-nav-link"
+                    }
+                  >
+                    Interactions
+                  </Nav.Link>
+                </LinkContainer>
+              </Nav.Item>
             </Nav>
           </Navbar.Collapse>
           {user ? (
