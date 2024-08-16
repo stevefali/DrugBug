@@ -1,3 +1,5 @@
+@use "../../styles/partials/mixins" as *;
+
 .drugbug-footer {
   width: 100%;
   margin-top: 1rem;
@@ -18,10 +20,14 @@
 
   &__nav {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
     gap: 1rem;
+    margin: 1rem 0;
+    @include tablet {
+      flex-direction: row;
+    }
   }
 }
