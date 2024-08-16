@@ -100,7 +100,6 @@ const AddEditPage = ({ isAdd }) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      alert("Added new Medication");
       navigate("/");
     } catch (error) {
       setError("Error adding medication.");
