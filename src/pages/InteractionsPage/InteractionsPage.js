@@ -5,6 +5,7 @@ import { Container, Stack } from "react-bootstrap";
 import { getInteractionsEndpoint } from "../../utils/networkUtils";
 import axios from "axios";
 import DrugBugButton from "../../components/DrugBugButton/DrugBugButton";
+import Interaction from "../../components/Interaction/Interaction";
 
 const InteractionsPage = ({ failedAuth, user }) => {
   const navigate = useNavigate();
@@ -26,7 +27,6 @@ const InteractionsPage = ({ failedAuth, user }) => {
       );
       setInteractions(interactionsResponse.data.interactionsResponse);
       setDisclaimer(interactionsResponse.data.disclaimer);
-      console.log(interactionsResponse.data);
     } catch (error) {
       console.log(error);
     }
@@ -43,12 +43,21 @@ const InteractionsPage = ({ failedAuth, user }) => {
       <main className="drugbug__page">
         <Container>
           <h1>Interactions</h1>
-          <p>{user.first_name}</p>
           <DrugBugButton
             text={"Test"}
             handleClick={() => getInteractions("grapefruit")}
           />
-          <Stack></Stack>
+          <Stack className="interaction-result__stack">
+            {interactions.map((interaction) => {
+              return (
+                <Interaction
+                  interaction={interaction}
+                  key={interaction.medicine}
+                />
+              );
+            })}
+          </Stack>
+          <p className="interaction-result__disclaimer">{disclaimer}</p>
         </Container>
       </main>
     );
