@@ -158,7 +158,10 @@ function App() {
               />
             }
           />
-          <Route path="/interactions" element={<InteractionsPage />} />
+          <Route
+            path="/interactions"
+            element={<InteractionsPage failedAuth={failedAuth} user={user} />}
+          />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <Footer />
