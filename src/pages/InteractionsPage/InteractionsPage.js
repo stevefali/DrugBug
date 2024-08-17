@@ -62,7 +62,8 @@ const InteractionsPage = ({ failedAuth, user }) => {
         <Container>
           <h1>Interactions</h1>
           <p className="interaction-explain">
-            Use this search to check for interactions with your medications.
+            Enter a food, drink, or drug to check for interactions with your
+            medications.
           </p>
           <Form
             ref={formRef}
@@ -73,7 +74,7 @@ const InteractionsPage = ({ failedAuth, user }) => {
             <Form.Control
               name="search_bar"
               onChange={handleSearchbarChange}
-              placeholder="Enter an interactor"
+              placeholder="Enter a food, drink or drug"
               className="interaction-form__search-bar"
             ></Form.Control>
           </Form>
