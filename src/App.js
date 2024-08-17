@@ -147,7 +147,10 @@ function App() {
           <Route path="/dose/:doseId" element={<DoseEditPage />} />
 
           <Route path="/signup" element={<SignupPage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/login"
+            element={<LoginPage setFailedAuth={setFailedAuth} />}
+          />
           <Route
             path="/account"
             element={
