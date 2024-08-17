@@ -1,0 +1,26 @@
+.interaction-result {
+  &__stack {
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+  &__disclaimer {
+    font-size: 0.875rem;
+  }
+}
+
+.interaction-form {
+  display: flex;
+  &__search-bar {
+    width: 70%;
+    margin-left: 0.5rem;
+  }
+}
+
+.interaction-explain {
+  font-size: 1.25rem;
+}
+
+.has-medications {
+  visibility: hidden;
+}

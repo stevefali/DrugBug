@@ -100,7 +100,6 @@ const AddEditPage = ({ isAdd }) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      alert("Added new Medication");
       navigate("/");
     } catch (error) {
       setError("Error adding medication.");
@@ -191,7 +190,11 @@ const AddEditPage = ({ isAdd }) => {
     );
   } else {
     if (!userMedication) {
-      return <p>Loading</p>;
+      return (
+        <main className="drugbug__page">
+          <p>Loading</p>
+        </main>
+      );
     }
     const {
       medicine_name,

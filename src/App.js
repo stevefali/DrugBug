@@ -19,6 +19,7 @@ import DoseAddPage from "./pages/DoseEditPage/DoseAddPage";
 import NotificationAPI from "notificationapi-js-client-sdk";
 import AccountPage from "./pages/AccountPage/AccountPage";
 import Footer from "./components/Footer/Footer";
+import InteractionsPage from "./pages/InteractionsPage/InteractionsPage";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -146,7 +147,10 @@ function App() {
           <Route path="/dose/:doseId" element={<DoseEditPage />} />
 
           <Route path="/signup" element={<SignupPage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/login"
+            element={<LoginPage setFailedAuth={setFailedAuth} />}
+          />
           <Route
             path="/account"
             element={
@@ -156,6 +160,10 @@ function App() {
                 setCurrentUser={fetchAuthorizedUser}
               />
             }
+          />
+          <Route
+            path="/interactions"
+            element={<InteractionsPage failedAuth={failedAuth} user={user} />}
           />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

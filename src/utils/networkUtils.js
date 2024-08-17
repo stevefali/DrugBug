@@ -28,3 +28,6 @@ export const deleteUserEndpoint = () => `${BASE}/user/delete`;
 export const putEditUserEndpoint = () => `${BASE}/user/edit`;
 
 export const getVapKeyEndpoint = () => `${BASE}/user/vap`;
+
+export const getInteractionsEndpoint = (interactor) =>
+  `${BASE}/interaction?interactor=${interactor}`;

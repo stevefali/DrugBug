@@ -13,6 +13,9 @@ const Footer = () => {
         <Link to={"/medication"} className="drugbug-footer__link">
           Add Medication
         </Link>
+        <Link to={"/interactions"} className="drugbug-footer__link">
+          Interactions
+        </Link>
       </nav>
     </footer>
   );

@@ -7,7 +7,7 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import DrugBugButton from "../../components/DrugBugButton/DrugBugButton";
 
-const LoginPage = () => {
+const LoginPage = ({ setFailedAuth }) => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const formRef = useRef();
@@ -34,6 +34,7 @@ const LoginPage = () => {
         });
 
         localStorage.setItem("token", response.data.token);
+        setFailedAuth(false);
         navigate("/");
       } catch (error) {
         setError(`Error Loggin In`);
